@@ -7,17 +7,17 @@ import styled from 'styled-components'
 import useForm from '../../hooks/useForm'
 
 
-const Container = styled.div`
+export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 `
 
-const Underlined = styled.span`
+export const Underlined = styled.span`
 	text-decoration: underline
 `	
 
-const P = styled.p`
+export const P = styled.p`
 	margin: 1rem 0;
 `
 
