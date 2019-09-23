@@ -9,11 +9,12 @@ const FoodContainer = styled.div`
 `
 
 //Food container is returned with data for the specific food from props
-export function FoodItem(props) {
+export default function FoodItem(props) {
     return (
         <FoodContainer>
             <h3>{props.type}</h3>
             <p>Points: {props.points}</p>
+            <p>Category: {props.category}</p>
         </FoodContainer>
     )
 }

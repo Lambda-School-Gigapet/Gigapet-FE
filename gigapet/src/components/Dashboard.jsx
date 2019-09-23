@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components'
-import Children from './Children/Children'
 
 const MainContent = styled.div`
     display: flex;
@@ -13,7 +12,7 @@ export default function Dashboard() {
   return (
     <MainContent>
       <h3>main content will go here</h3>
-      <Children />
+
     </MainContent>
   );
 }
