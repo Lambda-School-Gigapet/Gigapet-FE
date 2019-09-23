@@ -44,7 +44,7 @@ export default function Children(props) {
             {/* TODO: Does Gigapet go here? */}
             <h2>Your Children: </h2>
             <ChildrenContainer>
-                {children.map(child => <Child name={child.name} age={child.age} weight={child.weight}/>)}
+                {children.map((child, idx) => <Child key={idx} name={child.name} age={child.age} weight={child.weight}/>)}
             </ChildrenContainer>
         </>
     )
