@@ -1,5 +1,6 @@
 import React from "react"
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import useForm from '../../hooks/useForm'
 
@@ -50,6 +51,8 @@ export default function Login(props) {
 
 			<button type="submit">Login</button>
 		</form>
+
+		<p>Not a user? <Link to="/register">Register now!</Link></p>
 		</>
 	)
 }

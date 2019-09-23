@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { compose, map, split, trim } from 'ramda'
 
@@ -142,6 +143,8 @@ export default function Login(props) {
 
         <button type="submit">Login</button>
       </form>
+
+      <p>Already a user? <Link to="/login">Login</Link></p>
     </>
   )
 }
