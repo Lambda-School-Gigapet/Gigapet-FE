@@ -6,7 +6,7 @@ import useForm from '../../hooks/useForm'
 export default function Login(props) {
 
   const initialState = {
-    username: '',
+    email: '',
     password: ''
   }
 
@@ -27,12 +27,12 @@ export default function Login(props) {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
-            Username: 
+            Email: 
             <input 
-                name="username" 
-                type="text"
-                placeholder="username"
-                value={loginCredentials.username}
+                name="email" 
+                type="email"
+                placeholder="someone@example.com"
+                value={loginCredentials.email}
                 onChange={handleChanges}
             />
         </label>
@@ -42,7 +42,7 @@ export default function Login(props) {
             <input 
                 name="password" 
                 type="password"
-                placeholder="password"
+                placeholder="enter your password"
                 value={loginCredentials.password}
                 onChange={handleChanges}
             />
