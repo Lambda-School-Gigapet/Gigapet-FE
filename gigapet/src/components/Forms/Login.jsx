@@ -1,0 +1,48 @@
+import React from "react"
+import axios from 'axios'
+
+import useForm from '../../hooks/useForm'
+
+export default function Login(props) {
+
+  const initialState = {
+    username: '',
+    password: ''
+  }
+
+  const handleSubmitCb = loginCredentials => {
+    // TODO: change post url to that of the deployed backend 
+    axios.post('http://localhost:5000/api/login', loginCredentials)
+    .then(res => {
+      localStorage.setItem('gigapet-auth-token', res.data.payload)
+      props.history.push('/dashboard')
+    })
+    .catch(console.error)
+  }
+  
+  const [loginCredentials, handleChanges, handleSubmit] = useForm(initialState, handleSubmitCb)
+  
+  return (
+    <>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input 
+          name="username" 
+          type="text"
+          placeholder="username"
+          value={loginCredentials.username}
+          onChange={handleChanges}
+        />
+        <input 
+          name="password" 
+          type="password"
+          placeholder="password"
+          value={loginCredentials.password}
+          onChange={handleChanges}
+        />
+        <button type="submit">Login</button>
+      </form>
+    </>
+  )
+}
+
