@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "gigapet",
+    "builds": [{ "src": "gigapet/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
+    "routes": [
+        { "src": "/(.*)", "dest": "gigapet/$1" }
+    ]
+}
