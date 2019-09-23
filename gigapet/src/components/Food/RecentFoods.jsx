@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 
+
+//Helper util to request data with auth token of user
+import axiosWithAuth from '../../utils/axiosWithAuth'
 import FoodItem from './FoodItem'
 
 //Container div to show all food for child
@@ -22,7 +24,7 @@ export default function RecentFoods(props) {
     //Expecting it is returned in order of most recent first
     //Dep array tracks if the data for the food has changed
     useEffect(() => {
-        axios
+        axiosWithAuth()
         //TODO: need endpoint for getting food data
         .get('')
         .then(res => {

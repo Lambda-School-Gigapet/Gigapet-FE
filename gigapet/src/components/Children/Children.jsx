@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 
+//Helper util to request data with auth token of user
+import axiosWithAuth from '../../utils/axiosWithAuth';
 import Child from './Child'
 
 //Container div to show all children for user
@@ -21,7 +22,7 @@ export default function Children(props) {
     //Axios request for data on children
     //Dep array tracks if the data for the children has changed
     useEffect(() => {
-        axios
+        axiosWithAuth()
         //TODO: need endpoint for getting children data
         .get('')
         .then(res => {
