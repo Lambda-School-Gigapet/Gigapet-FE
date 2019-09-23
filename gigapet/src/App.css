@@ -1,3 +1,41 @@
 .App {
   text-align: center;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Cookie|Source+Sans+Pro&display=swap');
+
+
+/* semantic ui react styling overwrites START */
+.nav-wrap {
+  display: flex;
+}
+
+.ui.menu:first-child {
+  margin-top: 14px;
+}
+
+div.ui.menu{
+  margin: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 300px;
+  height: 40px;
+}
+
+.menu-items {
+  width: 100px;
+  text-align: center;
+  justify-content: center;
+}
+
+.ui.search {
+  font-size: 1em;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ui.search .prompt {
+  height: 25px;
+}
+/* semantic ui react styling overwrites END */
