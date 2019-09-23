@@ -26,20 +26,28 @@ export default function Login(props) {
     <>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input 
-          name="username" 
-          type="text"
-          placeholder="username"
-          value={loginCredentials.username}
-          onChange={handleChanges}
-        />
-        <input 
-          name="password" 
-          type="password"
-          placeholder="password"
-          value={loginCredentials.password}
-          onChange={handleChanges}
-        />
+        <label>
+            Username: 
+            <input 
+                name="username" 
+                type="text"
+                placeholder="username"
+                value={loginCredentials.username}
+                onChange={handleChanges}
+            />
+        </label>
+
+        <label>
+            Password:
+            <input 
+                name="password" 
+                type="password"
+                placeholder="password"
+                value={loginCredentials.password}
+                onChange={handleChanges}
+            />
+        </label>
+
         <button type="submit">Login</button>
       </form>
     </>
