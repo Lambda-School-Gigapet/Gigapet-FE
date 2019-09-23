@@ -9,7 +9,7 @@ export default function useForm(initialState={}, handleSubmitCb=(e)=>{}) {
 
     const handleSubmit = event => {
         event.preventDefault()
-        handleSubmitCb(state)
+        return handleSubmitCb(state)
     }
 
     return [state, handleChanges, handleSubmit]
