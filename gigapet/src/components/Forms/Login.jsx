@@ -52,7 +52,7 @@ export default function Login(props) {
 			<button type="submit">Login</button>
 		</form>
 
-		<p>Not a user? <Link to="/register">Register now!</Link></p>
+		<p>Not a user? <Link to="/register">Register now.</Link></p>
 		</>
 	)
 }
