@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import Child from './Child'
 
+import mockData from './mockdata'
+
 //Container div to show all children for user
 const ChildrenContainer = styled.div`
     width: 100%;
@@ -22,16 +24,19 @@ export default function Children(props) {
     //Axios request for data on children
     //Dep array tracks if the data for the children has changed
     useEffect(() => {
-        axiosWithAuth()
-        //TODO: need endpoint for getting children data
-        .get('')
-        .then(res => {
-            //Request data on the children and set the state of the list of children to the response data
-            setChildren(res.data)
-        }).catch(err => {
-            //Log error response to console for now until error handling is decided
-            console.log('There was an error getting the children data', err)
-        })
+        // axiosWithAuth()
+        // //TODO: need endpoint for getting children data
+        // .get('')
+        // .then(res => {
+        //     //Request data on the children and set the state of the list of children to the response data
+        //     setChildren(res.data)
+        // }).catch(err => {
+        //     //Log error response to console for now until error handling is decided
+        //     console.log('There was an error getting the children data', err)
+        // })
+        setTimeout(()=>{
+            setChildren(mockData)
+        }, 1000)
     }, [children])
 
     return (
