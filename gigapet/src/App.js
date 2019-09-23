@@ -10,11 +10,11 @@ import Dashboard from './components/Dashboard'
 import RegisterForm from './components/Forms/Register'
 import LoginForm from './components/Forms/Login'
 import ProtectedRoute from './components/ProtectedRoute'
+
 export default function App() {
 	return (
 		<div className="App">
 			<Navigation />
-			<h2>Gigapet</h2>
 			<Route exact path="/" component={LoginForm} />
 			<Route path="/login" component={LoginForm} />
 			<Route path="/register" component={RegisterForm} />
