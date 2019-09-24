@@ -9,10 +9,13 @@ import mockData from './mockdata'
 
 //Container div to show all children for user
 const ChildrenContainer = styled.div`
-    width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px;
 `
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
@@ -41,8 +44,8 @@ export default function Children(props) {
 
     return (
         <>
-            <h2>Your Children: </h2>
             <ChildrenContainer>
+                <h2>Your Children: </h2>
                 {children.map((child, idx) => <Child key={idx} name={child.name} age={child.age} weight={child.weight}/>)}
             </ChildrenContainer>
         </>
