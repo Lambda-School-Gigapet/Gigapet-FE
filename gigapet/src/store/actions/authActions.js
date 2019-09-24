@@ -25,3 +25,31 @@ export const registerUser = (newUserCredentials, history) => dispatch => {
         console.error(err)
     })
 }
+
+
+export const LOGIN_START = "LOGIN_START"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_FAILURE = "LOGIN_FAILURE"
+
+export const loginUser = (loginCredentials, setLoginSuccess, history) => dispatch => {
+    dispatch({ type: LOGIN_START })
+    axios.post('https://gigapets-be.herokuapp.com/api/auth/login', loginCredentials)
+		.then(res => {
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data.token})
+            setLoginSuccess(true)
+			localStorage.setItem('gigapet-auth-token', res.data.token)
+			setTimeout(() => history.push('/dashboard'), 1500)
+		})
+		.catch(err => {
+            dispatch({ type: LOGIN_FAILURE })
+            console.error(err)
+        })
+}
+
+export const SIGN_OUT = "SIGN_OUT"
+
+export const signOut = () => dispatch => { 
+    dispatch({ type: SIGN_OUT })
+    localStorage.removeItem('gigapet-auth-token')
+    // window.history.go('/login')
+}
