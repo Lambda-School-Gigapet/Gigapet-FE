@@ -12,5 +12,5 @@ export default function useForm(initialState={}, handleSubmitCb=(e)=>{}) {
         return handleSubmitCb(state)
     }
 
-    return [state, handleChanges, handleSubmit]
+    return [state, setState, handleChanges, handleSubmit]
 }
