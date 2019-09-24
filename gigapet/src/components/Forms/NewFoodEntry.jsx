@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Button, Form } from 'semantic-ui-react'
 import styled from 'styled-components'
 
@@ -28,9 +28,21 @@ export default function NewFoodEntry() {
     }
     
     const [newMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
+    const [modalOpen, setModalOpen] = useState(false)
+
+    const handleOpen = () => setModalOpen(true)
+    const handleClose = () => setModalOpen(false)
     
     return (
-        <Modal trigger={<Small><Button color="green">Add a new food entry</Button></Small>}>
+        <Modal 
+            trigger={
+                <Small>
+                    <Button onClick={handleOpen} color="green">Add a new food entry</Button>
+                </Small>
+            }
+            open={modalOpen}
+            onClose={handleClose}
+        >
             {/* TODO: dynamically add child's name to modal header */}
             <Modal.Header>New meal for Johnny</Modal.Header>
             <Modal.Content>
@@ -64,7 +76,7 @@ export default function NewFoodEntry() {
                                 type="text" 
                             />
                         </Form.Field>
-                        <Button color="green">+</Button>
+                        <Centered><Button onClick={handleClose} color="green">+</Button></Centered>
                     </Form>
                 </Centered>
             </Modal.Content>
