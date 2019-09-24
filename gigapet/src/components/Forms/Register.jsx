@@ -11,23 +11,20 @@ export default function Login(props) {
     const dispatch = useDispatch()
 
     const initialStateCredentials = {
-        email: '',
         username: '',
         password: '',
         cPassword: '',
     }
 
     const initialStateErrors = {
-        email: null,
         username: null,
         password: null,
         cPassword: null
     }
 
     const validateInputs = (inputs) => {
-        const { email, username, password, cPassword } = inputs
+        const { username, password, cPassword } = inputs
 
-        if (!email) setError({...errors, email: 'You must enter an email address.'})
         if (!username) setError({...errors, username: 'You must enter a username.'})
         if (!password) setError({...errors, password: 'You must enter a password.'}) 
         if (password.length < 6) setError({...errors, password: 'Your password must be at least 6 characters.'})
@@ -64,18 +61,6 @@ export default function Login(props) {
 
             <Form error onSubmit={handleSubmit}>
                 <Form.Field required>
-                    <label>Email</label>
-                    {errors.email && <Error message={errors.email} />}
-                    <input 
-                        name="email" 
-                        type="email"
-                        placeholder="enter your email"
-                        value={newUserCredentials.email}
-                        onChange={handleChanges}
-                    />
-                </Form.Field>
-
-                <Form.Field required>
                     <label>Username</label>
                     {errors.username && <Error message={errors.username} />}
                     <input 
@@ -111,7 +96,7 @@ export default function Login(props) {
                     />
                 </Form.Field>
 
-                <Button type="submit">Login</Button>
+                <Button type="submit">Register</Button>
             </Form>
         
             <P><strong>Already a user?</strong> <Link to="/login"><Underlined>Login</Underlined></Link></P>
