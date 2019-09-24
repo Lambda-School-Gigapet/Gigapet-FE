@@ -45,7 +45,7 @@ export default function RecentMealsAllChildren(props) {
         <>
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
-                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} type={meal.type}/>)}
+                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} mealType={meal.mealType}/>)}
             </MealContainer>
         </>
     )

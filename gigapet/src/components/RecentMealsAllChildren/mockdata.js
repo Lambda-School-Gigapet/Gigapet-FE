@@ -2,37 +2,37 @@ export default [
     {
         "date": "09-24-2019",
         "child": "Mock Child 1",
-        "category": "Lunch",
-        "type": "Meat"
+        "mealType": "Lunch",
+        "category": "Meat"
     },
     {
         "date": "09-24-2019",
         "child": "Mock Child 2",
-        "category": "Lunch",
-        "type": "Vegetable"
+        "mealType": "Lunch",
+        "category": "Vegetable"
     },
     {
         "date": "09-24-2019",
         "child": "Mock Child 1",
-        "category": "Breakfast",
-        "type": "Fruit"
+        "mealType": "Breakfast",
+        "category": "Fruit"
     },
     {
         "date": "09-24-2019",
         "child": "Mock Child 3",
-        "category": "Lunch",
-        "type": "Starch"
+        "mealType": "Lunch",
+        "category": "Starch"
     },
     {
         "date": "09-24-2019",
         "child": "Mock Child 4",
-        "category": "Lunch",
-        "type": "Vegetable"
+        "mealType": "Lunch",
+        "category": "Vegetable"
     },
     {
         "date": "09-24-2019",
         "child": "Mock Child 3",
-        "category": "Breakfast",
-        "type": "Fruit"
+        "mealType": "Breakfast",
+        "category": "Fruit"
     }
 ]

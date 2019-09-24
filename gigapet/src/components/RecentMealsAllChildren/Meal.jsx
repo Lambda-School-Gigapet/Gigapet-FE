@@ -18,7 +18,7 @@ export default function Meal(props) {
             <h3>{props.date}</h3>
             <p>{props.child}</p>
             <p>{props.category}</p>
-            <p>{props.type}</p>
+            <p>{props.mealType}</p>
         </MealContainer>
     )
 }
