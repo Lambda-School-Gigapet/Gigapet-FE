@@ -11,8 +11,8 @@ import mockData from './mockdata'
 const ChildrenContainer = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 `
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
@@ -41,7 +41,6 @@ export default function Children(props) {
 
     return (
         <>
-            {/* TODO: Does Gigapet go here? */}
             <h2>Your Children: </h2>
             <ChildrenContainer>
                 {children.map((child, idx) => <Child key={idx} name={child.name} age={child.age} weight={child.weight}/>)}
