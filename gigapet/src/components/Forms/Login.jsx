@@ -40,7 +40,7 @@ export default function Login(props) {
 		dispatch(loginUser(loginCredentials, setLoginSuccess, props.history))
 	}
   
-	const [loginCredentials, handleChanges, handleSubmit] = useForm(initialStateLogin, handleSubmitCb)
+	const [loginCredentials,, handleChanges, handleSubmit] = useForm(initialStateLogin, handleSubmitCb)
   
 	return (
 		<Container>

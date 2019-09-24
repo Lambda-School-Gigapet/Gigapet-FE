@@ -52,7 +52,7 @@ export default function Login(props) {
         } 
     }
   
-    const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
+    const [newUserCredentials,, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
     const [errors, setError] = useState(initialStateErrors)
 
     return (
