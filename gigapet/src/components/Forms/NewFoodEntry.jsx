@@ -25,13 +25,18 @@ export default function NewFoodEntry() {
     const handleSubmitCb = newMealEntry => {
         // TODO: dispatch "newMealEntry" to the store
         console.log(newMealEntry)
+        setNewMealEntry(initialStateNewMealEntry)
+
     }
     
-    const [newMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
+    const [newMealEntry, setNewMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
     const [modalOpen, setModalOpen] = useState(false)
 
     const handleOpen = () => setModalOpen(true)
-    const handleClose = () => setModalOpen(false)
+    // The form won't submit without this setTimeout hack.
+    // Without the setTimeout, the following warning appears in the console: 
+    // Form submission canceled because the form is not connected
+    const handleClose = () => setTimeout(() => setModalOpen(false), 0)
     
     return (
         <Modal 
@@ -47,12 +52,14 @@ export default function NewFoodEntry() {
             <Modal.Header>New meal for Johnny</Modal.Header>
             <Modal.Content>
                 <Centered>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Field>
                             <label>Meal Type (Breakfast/ Lunch/ Dinner)</label>
                             <input 
                                 name="mealType"
-                                type="text" 
+                                type="text"
+                                value={newMealEntry.mealType}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -60,6 +67,8 @@ export default function NewFoodEntry() {
                             <input 
                                 name="category"
                                 type="text" 
+                                value={newMealEntry.category}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -67,16 +76,20 @@ export default function NewFoodEntry() {
                             <input 
                                 name="dish"
                                 type="text" 
+                                value={newMealEntry.dish}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
                             <label>Servings</label>
                             <input 
                                 name="servings"
-                                type="text" 
+                                type="text"
+                                value={newMealEntry.servings} 
+                                onChange={handleChanges}
                             />
                         </Form.Field>
-                        <Centered><Button onClick={handleClose} color="green">+</Button></Centered>
+                        <Centered><Button onClick={handleClose} color="green" type="submit">+</Button></Centered>
                     </Form>
                 </Centered>
             </Modal.Content>
