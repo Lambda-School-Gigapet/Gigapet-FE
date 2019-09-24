@@ -14,7 +14,10 @@ export const registerUser = (newUserCredentials, history) => dispatch => {
     .then(res => {
         // notify user of success processing their input
         // TODO: dispatch username to the store
-        dispatch({ type: REGISTER_SUCCESS })
+        dispatch({ 
+            type: REGISTER_SUCCESS, 
+            payload: pick(['id', 'username'], res.data) 
+        })
         history.push('/login')
     })
     .catch(err => {
