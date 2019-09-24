@@ -47,6 +47,7 @@ export default function NewFoodEntry() {
             }
             open={modalOpen}
             onClose={handleClose}
+            closeIcon
         >
             {/* TODO: dynamically add child's name to modal header */}
             <Modal.Header>New meal for Johnny</Modal.Header>
