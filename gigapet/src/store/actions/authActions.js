@@ -9,13 +9,16 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE"
 export const registerUser = (newUserCredentials, history) => dispatch => {
     dispatch({ type: REGISTER_START })
     axios.post('https://gigapets-be.herokuapp.com/api/auth/register', 
-                   pick(['email', 'username', 'password'], newUserCredentials)
+                pick(['username', 'password'], newUserCredentials)
     )
     .then(res => {
         // notify user of success processing their input
         // TODO: dispatch username to the store
-        console.log('Register success')
+        dispatch({ type: REGISTER_SUCCESS })
         history.push('/login')
     })
-    .catch(console.error)
+    .catch(err => {
+        dispatch({ type: REGISTER_FAILURE })
+        console.error(err)
+    })
 }
