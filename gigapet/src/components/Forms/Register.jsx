@@ -47,12 +47,8 @@ export default function Login(props) {
         axios.post('http://localhost:5000/api/register', pick(['username', 'password'], newUserCredentials))
         .then(res => {
             // notify user of success processing their input
-            setLoginSuccess(true)
-            
             // TODO: dispatch username to the store
-            setTimeout(() => {
-                props.history.push('/login')
-            }, 1500)
+            props.history.push('/login')
         })
         .catch(console.error)
     } 
@@ -60,8 +56,7 @@ export default function Login(props) {
   
   const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
   const [errors, setError] = useState(initialStateErrors)
-  const [loginSuccess, setLoginSuccess] = useState(false)
-  
+
   return (
         <Container>
             <h2>Register</h2>
@@ -105,13 +100,6 @@ export default function Login(props) {
 
                 <Button type="submit">Login</Button>
             </Form>
-
-            { loginSuccess && 
-              <Message positive>
-                  <Message.Header>Success</Message.Header>
-                  <p>You are now being redirected to the dashboard...</p>
-              </Message>
-            }
         
             <P><strong>Already a user?</strong> <Link to="/login"><Underlined>Login</Underlined></Link></P>
         </Container>

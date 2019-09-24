@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Message } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import useForm from '../../hooks/useForm'
@@ -33,6 +33,7 @@ export default function Login(props) {
 		// TODO: change post url to that of the deployed backend 
 		axios.post('http://localhost:5000/api/login', loginCredentials)
 		.then(res => {
+            setLoginSuccess(true)
 			localStorage.setItem('gigapet-auth-token', res.data.payload)
 			props.history.push('/dashboard')
 		})
@@ -40,6 +41,7 @@ export default function Login(props) {
 	}
   
 	const [loginCredentials, handleChanges, handleSubmit] = useForm(initialState, handleSubmitCb)
+	const [loginSuccess, setLoginSuccess] = useState(false)
   
 	return (
 		<Container>
@@ -68,6 +70,13 @@ export default function Login(props) {
 				</Form.Field>
 				<Button type="submit">Login</Button>
 			</Form>
+
+			{ loginSuccess && 
+              <Message positive>
+                  <Message.Header>Success</Message.Header>
+                  <p>You are now being redirected to the dashboard...</p>
+              </Message>
+            }
 
 			<P>
 				<strong>Not a user?</strong> <Link to="/register"><Underlined>Register now.</Underlined></Link>
