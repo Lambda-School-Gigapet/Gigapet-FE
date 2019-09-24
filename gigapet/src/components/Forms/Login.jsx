@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Message } from 'semantic-ui-react'
 import styled from 'styled-components'
@@ -30,9 +30,10 @@ export default function Login(props) {
 	const dispatch = useDispatch()
 	const [loginSuccess, setLoginSuccess] = useState(false)
 
+	const { username } = useSelector(state => ({ username: state.user.username }))
 
   	const initialStateLogin = {
-		username: '',
+		username: username || '',
 		password: ''
 	}
 	
