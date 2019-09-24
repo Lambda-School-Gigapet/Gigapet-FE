@@ -19,6 +19,7 @@ export default function Meal(props) {
             <p>{props.child}</p>
             <p>{props.category}</p>
             <p>{props.mealType}</p>
+            <p>{props.servings}</p>
         </MealContainer>
     )
 }
