@@ -36,7 +36,7 @@ export default function Login(props) {
     const { username, password, cPassword } = newUserCredentials
     if (username &&
         password &&
-        cPassword &&
+        password.length >=6 && 
         password === cPassword
     ) {
         // remove any errors that are rendered to the screen
@@ -46,8 +46,13 @@ export default function Login(props) {
         // TODO: change post url to that of the deployed backend 
         axios.post('http://localhost:5000/api/register', pick(['username', 'password'], newUserCredentials))
         .then(res => {
-          // TODO: make newUserCredentials globally available via context
-          props.history.push('/login')
+            // notify user of success processing their input
+            setLoginSuccess(true)
+            
+            // TODO: dispatch username to the store
+            setTimeout(() => {
+                props.history.push('/login')
+            }, 1500)
         })
         .catch(console.error)
     } 
@@ -55,13 +60,14 @@ export default function Login(props) {
   
   const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
   const [errors, setError] = useState(initialStateErrors)
+  const [loginSuccess, setLoginSuccess] = useState(false)
   
   return (
         <Container>
             <h2>Register</h2>
 
             <Form error onSubmit={handleSubmit}>
-                <Form.Field>
+                <Form.Field required>
                     <label>Username</label>
                     {errors.username && <Error message={errors.username} />}
                     <input 
@@ -73,7 +79,7 @@ export default function Login(props) {
                     />
                 </Form.Field>
 
-                <Form.Field>
+                <Form.Field required>
                     <label>Password</label>
                     {errors.password && <Error message={errors.password} />}
                     <input 
@@ -85,7 +91,7 @@ export default function Login(props) {
                     />
                 </Form.Field>
 
-                <Form.Field>
+                <Form.Field required>
                     <label>Confirm Password</label>
                     {errors.cPassword && <Error message={errors.cPassword} /> }
                     <input 
@@ -99,6 +105,13 @@ export default function Login(props) {
 
                 <Button type="submit">Login</Button>
             </Form>
+
+            { loginSuccess && 
+              <Message positive>
+                  <Message.Header>Success</Message.Header>
+                  <p>You are now being redirected to the dashboard...</p>
+              </Message>
+            }
         
             <P><strong>Already a user?</strong> <Link to="/login"><Underlined>Login</Underlined></Link></P>
         </Container>
