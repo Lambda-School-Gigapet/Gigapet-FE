@@ -66,6 +66,7 @@ export default function NewFoodEntry() {
                                 type="text" 
                             />
                         </Form.Field>
+                        <Button color="green">+</Button>
                     </Form>
                 </Centered>
             </Modal.Content>
