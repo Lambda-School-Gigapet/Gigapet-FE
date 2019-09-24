@@ -16,8 +16,6 @@ const Small = styled.div`
 
 export default function NewFoodEntry() {
     const initialStateNewMealEntry = {
-        // TODO: use earlier git commit with R.compose to split the categories into an array
-        // before dispatching it to the store
         mealType: '', 
         category: '',
         dish: '',
