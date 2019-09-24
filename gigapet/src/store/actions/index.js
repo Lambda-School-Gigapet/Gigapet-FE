@@ -10,7 +10,10 @@ import {
     loginUser,
 
     SIGN_OUT,
-    signOut
+    signOut,
+
+    DELETE_ACCOUNT,
+    deleteAccount
 } from './authActions'
 
 export {
@@ -26,5 +29,8 @@ export {
     loginUser,
 
     SIGN_OUT,
-    signOut
+    signOut,
+
+    DELETE_ACCOUNT,
+    deleteAccount
 }

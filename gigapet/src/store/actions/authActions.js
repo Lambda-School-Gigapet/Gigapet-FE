@@ -52,5 +52,15 @@ export const SIGN_OUT = "SIGN_OUT"
 export const signOut = () => dispatch => { 
     dispatch({ type: SIGN_OUT })
     localStorage.removeItem('gigapet-auth-token')
-    // window.history.go('/login')
+}
+
+
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT"
+
+export const deleteAccount = history => (dispatch, getState) => {
+    const { user: { id } } = getState()
+    dispatch({ type: DELETE_ACCOUNT })
+    axios.delete(`https://gigapets-be.herokuapp.com/api/auth/${id}`)
+    localStorage.removeItem('gigapet-auth-token')
+    history.push('/register')
 }
