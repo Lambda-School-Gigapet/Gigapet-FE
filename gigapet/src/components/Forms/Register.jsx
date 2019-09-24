@@ -1,63 +1,61 @@
 import React, { useState } from "react"
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { pick } from 'ramda'
 import { Form, Button, Message } from 'semantic-ui-react'
+import { useDispatch } from 'react-redux'
 
 import useForm from '../../hooks/useForm'
 import { Container, Underlined, P } from './Login'
+import { registerUser } from '../../store/actions'
 
 export default function Login(props) {
-  const initialStateCredentials = {
-    username: '',
-    password: '',
-    cPassword: '',
-  }
+    const dispatch = useDispatch()
 
-  const initialStateErrors = {
-    username: null,
-    password: null,
-    cPassword: null
-  }
+    const initialStateCredentials = {
+        username: '',
+        password: '',
+        cPassword: '',
+    }
 
-  const validateInputs = (inputs) => {
-    const { username, password, cPassword } = inputs
+    const initialStateErrors = {
+        username: null,
+        password: null,
+        cPassword: null
+    }
 
-    if (!username) setError({...errors, username: 'You must enter a username.'})
-    if (!password) setError({...errors, password: 'You must enter a password.'}) 
-    if (password.length < 6) setError({...errors, password: 'Your password must be at least 6 characters.'})
-    if (password !== cPassword) setError({...errors, cPassword: 'Passwords must match.'})
-  }
+    const validateInputs = (inputs) => {
+        const { username, password, cPassword } = inputs
 
-  const handleSubmitCb = newUserCredentials => {
-    // display any potential errors 
-    validateInputs(newUserCredentials)
+        if (!username) setError({...errors, username: 'You must enter a username.'})
+        if (!password) setError({...errors, password: 'You must enter a password.'}) 
+        if (password.length < 6) setError({...errors, password: 'Your password must be at least 6 characters.'})
+        if (password !== cPassword) setError({...errors, cPassword: 'Passwords must match.'})
+    }
 
-    const { username, password, cPassword } = newUserCredentials
-    if (username &&
-        password &&
-        password.length >=6 && 
-        password === cPassword
-    ) {
-        // remove any errors that are rendered to the screen
-        setError(initialStateErrors)
+    const handleSubmitCb = newUserCredentials => {
+        // display any potential errors 
+        validateInputs(newUserCredentials)
 
-        // submit credenitals to the server
-        // TODO: change post url to that of the deployed backend 
-        axios.post('http://localhost:5000/api/register', pick(['username', 'password'], newUserCredentials))
-        .then(res => {
-            // notify user of success processing their input
-            // TODO: dispatch username to the store
-            props.history.push('/login')
-        })
-        .catch(console.error)
-    } 
-  }
+        const { username, password, cPassword } = newUserCredentials
+        // I'm purposefully not requiring the email from the user since they only need 
+        // a username/password to login
+        if (username &&
+            password &&
+            password.length >=6 && 
+            password === cPassword
+        ) {
+            // remove any errors that are rendered to the screen
+            setError(initialStateErrors)
+
+            // submit credenitals to the server
+            // TODO: change post url to that of the deployed backend 
+            dispatch(registerUser(newUserCredentials, props.history))
+        } 
+    }
   
-  const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
-  const [errors, setError] = useState(initialStateErrors)
+    const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
+    const [errors, setError] = useState(initialStateErrors)
 
-  return (
+    return (
         <Container>
             <h2>Register</h2>
 
@@ -98,7 +96,7 @@ export default function Login(props) {
                     />
                 </Form.Field>
 
-                <Button type="submit">Login</Button>
+                <Button type="submit">Register</Button>
             </Form>
         
             <P><strong>Already a user?</strong> <Link to="/login"><Underlined>Login</Underlined></Link></P>

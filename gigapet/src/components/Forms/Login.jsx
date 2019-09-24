@@ -1,10 +1,11 @@
 import React, { useState } from "react"
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Message } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import useForm from '../../hooks/useForm'
+import { loginUser } from '../../store/actions'
 
 
 export const Container = styled.div`
@@ -24,24 +25,20 @@ export const P = styled.p`
 
 export default function Login(props) {
 	// TODO: default the email value based on credentials stored on global context object 
-  	const initialState = {
+	const dispatch = useDispatch()
+	const [loginSuccess, setLoginSuccess] = useState(false)
+
+
+  	const initialStateLogin = {
 		username: '',
 		password: ''
 	}
-
+	
 	const handleSubmitCb = loginCredentials => {
-		// TODO: change post url to that of the deployed backend 
-		axios.post('http://localhost:5000/api/login', loginCredentials)
-		.then(res => {
-            setLoginSuccess(true)
-			localStorage.setItem('gigapet-auth-token', res.data.payload)
-			props.history.push('/dashboard')
-		})
-		.catch(console.error)
+		dispatch(loginUser(loginCredentials, setLoginSuccess, props.history))
 	}
   
-	const [loginCredentials, handleChanges, handleSubmit] = useForm(initialState, handleSubmitCb)
-	const [loginSuccess, setLoginSuccess] = useState(false)
+	const [loginCredentials, handleChanges, handleSubmit] = useForm(initialStateLogin, handleSubmitCb)
   
 	return (
 		<Container>

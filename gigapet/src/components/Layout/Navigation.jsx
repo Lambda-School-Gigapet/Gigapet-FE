@@ -2,6 +2,10 @@ import React from "react";
 import NavBar from "./Navbar";
 import SearchExampleStandard from './Searchbar'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { signOut } from '../../store/actions'
 
 const HeaderContent = styled.div`
   display: flex;
@@ -34,16 +38,28 @@ const Button = styled.button`
     &:hover {
         transform: scale(1.1);
     }
+
+    a {
+      color: white
+    }
 `
 
-export default function Header() {
+export default function Header(props) {
+  const dispatch = useDispatch()
+
+  function handleSignOut() {
+    dispatch(signOut())
+  }
+  
   return (
     <HeaderContent>
       <Logo>Gigapet</Logo>
       <SearchExampleStandard />
       <span className="nav-wrap">
         <NavBar></NavBar>
-        <Button> Sign Out </Button>
+        <Button onClick={handleSignOut}>
+          <Link to='/login'> Sign Out </Link>
+        </Button>
       </span>
     </HeaderContent>
   );
