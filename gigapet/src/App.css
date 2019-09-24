@@ -1,9 +1,4 @@
-.App {
-  text-align: center;
-}
-
 @import url('https://fonts.googleapis.com/css?family=Cookie|Source+Sans+Pro&display=swap');
-
 
 /* semantic ui react styling overwrites START */
 .nav-wrap {
@@ -37,5 +32,9 @@ div.ui.menu{
 
 .ui.search .prompt {
   height: 25px;
+}
+
+.field input {
+  width: 300px !important;
 }
 /* semantic ui react styling overwrites END */
