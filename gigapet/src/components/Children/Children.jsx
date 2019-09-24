@@ -13,9 +13,9 @@ const ChildrenContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
     border-radius: 5px;
     margin: 10px;
+    padding: 10px;
 `
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
