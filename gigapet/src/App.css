@@ -37,4 +37,9 @@ div.ui.menu{
 .field input {
   width: 300px !important;
 }
+
+.ui.card {
+  margin: 1em 0;
+  width: 100%;
+}
 /* semantic ui react styling overwrites END */
