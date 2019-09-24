@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom'
 // Styles 
 import './App.css'
 // Components
-import Navigation from'./components/Layout/Navigation'
 import Footer from './components/Layout/Footer'
 import Dashboard from './components/Dashboard'
 import RegisterForm from './components/Forms/Register'
@@ -15,7 +14,6 @@ import ChildDashboard from './components/Children/ChildDashboard'
 export default function App() {
 	return (
 		<div className="App">
-			<Navigation />
 			<Route exact path="/" component={LoginForm} />
 			<Route path="/login" component={LoginForm} />
 			<Route path="/register" component={RegisterForm} />
