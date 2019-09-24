@@ -31,11 +31,11 @@ export default function Login(props) {
 
 	const handleSubmitCb = loginCredentials => {
 		// TODO: change post url to that of the deployed backend 
-		axios.post('http://localhost:5000/api/login', loginCredentials)
+		axios.post('https://gigapets-be.herokuapp.com/api/auth/login', loginCredentials)
 		.then(res => {
             setLoginSuccess(true)
 			localStorage.setItem('gigapet-auth-token', res.data.payload)
-			props.history.push('/dashboard')
+			setTimeout(() => props.history.push('/dashboard'), 1500)
 		})
 		.catch(console.error)
 	}
