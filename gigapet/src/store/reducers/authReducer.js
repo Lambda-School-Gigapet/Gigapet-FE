@@ -11,7 +11,7 @@ export default function authReducer(state=initialState, action) {
             return {
                 ...state,
                 loggedIn: true,
-                authToken: action.payload
+                authToken: action.payload.token
             }
 
         case SIGN_OUT:

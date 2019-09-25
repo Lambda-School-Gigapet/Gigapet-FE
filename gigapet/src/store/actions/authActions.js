@@ -12,12 +12,11 @@ export const registerUser = (newUserCredentials, setRegistrationSuccess, history
                 pick(['username', 'password'], newUserCredentials)
     )
     .then(res => {
-        // notify user of success processing their input
-        // TODO: dispatch username to the store
         dispatch({ 
             type: REGISTER_SUCCESS, 
             payload: pick(['id', 'username'], res.data) 
         })
+        // notify user of success processing their input
         setRegistrationSuccess(true)
         setTimeout(() => history.push('/login'), 1000)
     })
@@ -36,7 +35,13 @@ export const loginUser = (loginCredentials, setLoginSuccess, history) => dispatc
     dispatch({ type: LOGIN_START })
     axios.post('https://gigapets-be.herokuapp.com/api/auth/login', loginCredentials)
 		.then(res => {
-            dispatch({ type: LOGIN_SUCCESS, payload: res.data.token})
+            dispatch({ 
+                type: LOGIN_SUCCESS, 
+                payload: {
+                    token: res.data.token,
+                    id: res.data.id
+                }
+            })
             setLoginSuccess(true)
 			localStorage.setItem('gigapet-auth-token', res.data.token)
 			setTimeout(() => history.push('/dashboard'), 1500)
@@ -59,7 +64,9 @@ export const DELETE_ACCOUNT = "DELETE_ACCOUNT"
 
 export const deleteAccount = history => (dispatch, getState) => {
     const { user: { id } } = getState()
+
     dispatch({ type: DELETE_ACCOUNT })
+    
     axios.delete(`https://gigapets-be.herokuapp.com/api/auth/${id}`)
     localStorage.removeItem('gigapet-auth-token')
     history.push('/register')
