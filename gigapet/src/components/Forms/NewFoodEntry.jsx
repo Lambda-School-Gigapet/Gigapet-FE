@@ -4,13 +4,13 @@ import styled from 'styled-components'
 
 import useForm from '../../hooks/useForm'
 
-const Centered = styled.div`
+export const Centered = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 `
 
-const Small = styled.div`
+export const Small = styled.div`
     width: 150px;
 `
 
