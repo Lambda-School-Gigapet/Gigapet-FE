@@ -7,7 +7,7 @@ const ChildContent = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 40px 80px;
 `
 
@@ -35,6 +35,7 @@ const Image = styled.img`
     padding-top: 20px;
     width: 500px;
     height: 600px;
+    margin-bottom: 3rem !important; 
 `
 
 const Button = styled.button`

@@ -4,9 +4,9 @@ import Children from './Children/Children'
 import RecentMealsAllChildren from './RecentMealsAllChildren/RecentMealsAllChildren'
 
 const MainContent = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 75vh;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20vh;
 `
 
 export default function Dashboard() {
