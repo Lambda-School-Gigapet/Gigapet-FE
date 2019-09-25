@@ -35,6 +35,7 @@ export default function Children(props) {
 
     //Axios request for data on children
     //Dep array tracks if the data for the children has changed
+    const { fetchChildData } = props
     useEffect(() => {
         axiosWithAuth()
         //TODO: need endpoint for getting children data
@@ -50,7 +51,7 @@ export default function Children(props) {
         // setTimeout(()=>{
         //     setChildren(mockData)
         // }, 1000)
-    }, [userId])
+    }, [userId, fetchChildData])
 
     if (!children) {
         return (

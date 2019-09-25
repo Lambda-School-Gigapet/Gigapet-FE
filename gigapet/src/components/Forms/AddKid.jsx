@@ -6,7 +6,7 @@ import { Centered, Small } from './NewFoodEntry'
 import { addNewChild } from '../../store/actions'
 import useForm from '../../hooks/useForm'
 
-export default function AddKid() {
+export default function AddKid(props) {
     const { id } = useSelector(state => ({ id: state.user.id }))
     const dispatch = useDispatch()
     const [modalOpen, setModalOpen] = useState(false)
@@ -22,6 +22,7 @@ export default function AddKid() {
         console.log(newKid)
         setNewKid(initialStateNewKid)
         dispatch(addNewChild(newKid))
+        props.triggerChildDataUpdate(prevState => !prevState)
     }
     
     const [newKid, setNewKid, handleChanges, handleSubmit] = useForm(initialStateNewKid, handleSubmitCb)
