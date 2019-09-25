@@ -60,7 +60,7 @@ const Button = styled.button`
     }
 `
 
-export default function ChildDashboard () {
+export default function ChildDashboard (props) {
 
     return (
         <>
@@ -96,7 +96,7 @@ export default function ChildDashboard () {
                 </MealList>
             </LeftContent>
             <RightContent>
-                <NewFoodEntryForm />
+                <NewFoodEntryForm childId={props.match.params.id}/>
                 <Image src={HappyDog} alt='dog'></Image>
             </RightContent>
         </ChildContent>

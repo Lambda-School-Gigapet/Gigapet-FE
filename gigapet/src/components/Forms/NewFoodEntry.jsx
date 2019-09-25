@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Modal, Button, Form } from 'semantic-ui-react'
 import styled from 'styled-components'
+import { assoc, compose, evolve } from 'ramda'
 
 import useForm from '../../hooks/useForm'
+import { addNewMealEntry } from '../../store/actions'
 
 export const Centered = styled.div`
     display: flex;
@@ -14,19 +17,36 @@ export const Small = styled.div`
     width: 150px;
 `
 
-export default function NewFoodEntry() {
+export default function NewFoodEntry(props) {
+    const dispatch = useDispatch()
+    
     const initialStateNewMealEntry = {
-        mealType: '', 
-        category: '',
-        dish: '',
-        servings: ''
+        kids_id: props.childId,
+        date: '', // "09-12-2019",
+        meal: '', // "lunch",
+        food:  '', //"cheese",
+        category: '', // "dairy",
+        servings: '' // 2
+    }
+
+    const formatDate = date => {
+        const [year, month, day] = date.split('-')
+        const formattedDate = [month, day, year].join('-')
+        return formattedDate
     }
     
     const handleSubmitCb = newMealEntry => {
-        // TODO: dispatch "newMealEntry" to the store
-        console.log(newMealEntry)
+        compose(
+            dispatch,
+            addNewMealEntry.bind(null, newMealEntry.kids_id),
+            evolve({
+                kids_id: parseInt,
+                servings: parseInt,
+                date: formatDate
+            })
+        )(newMealEntry)   
+        
         setNewMealEntry(initialStateNewMealEntry)
-
     }
     
     const [newMealEntry, setNewMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
@@ -55,11 +75,29 @@ export default function NewFoodEntry() {
                 <Centered>
                     <Form onSubmit={handleSubmit}>
                         <Form.Field>
-                            <label>Meal Type (Breakfast/ Lunch/ Dinner)</label>
+                            <label>Date</label>
                             <input 
-                                name="mealType"
+                                name="date"
+                                type="date"
+                                value={newMealEntry.date}
+                                onChange={handleChanges}
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Meal (Breakfast/ Lunch/ Dinner)</label>
+                            <input 
+                                name="meal"
                                 type="text"
-                                value={newMealEntry.mealType}
+                                value={newMealEntry.meal}
+                                onChange={handleChanges}
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Dish</label>
+                            <input 
+                                name="food"
+                                type="text" 
+                                value={newMealEntry.food}
                                 onChange={handleChanges}
                             />
                         </Form.Field>
@@ -69,15 +107,6 @@ export default function NewFoodEntry() {
                                 name="category"
                                 type="text" 
                                 value={newMealEntry.category}
-                                onChange={handleChanges}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Dish</label>
-                            <input 
-                                name="dish"
-                                type="text" 
-                                value={newMealEntry.dish}
                                 onChange={handleChanges}
                             />
                         </Form.Field>
