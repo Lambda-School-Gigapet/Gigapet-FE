@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components'
 import Children from './Children/Children'
 import RecentMealsAllChildren from './RecentMealsAllChildren/RecentMealsAllChildren'
+import Navigation from './Layout/Navigation'
 
 const MainContent = styled.div`
   display: flex;
@@ -11,9 +12,12 @@ const MainContent = styled.div`
 
 export default function Dashboard() {
   return (
+    <>
+    <Navigation />
     <MainContent>
       <Children />
       <RecentMealsAllChildren />
     </MainContent>
+    </>
   );
 }

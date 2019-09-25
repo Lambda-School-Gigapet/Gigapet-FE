@@ -6,7 +6,7 @@ export const REGISTER_START = "REGISTER_START"
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 export const REGISTER_FAILURE = "REGISTER_FAILURE"
 
-export const registerUser = (newUserCredentials, history) => dispatch => {
+export const registerUser = (newUserCredentials, setRegistrationSuccess, history) => dispatch => {
     dispatch({ type: REGISTER_START })
     axios.post('https://gigapets-be.herokuapp.com/api/auth/register', 
                 pick(['username', 'password'], newUserCredentials)
@@ -18,7 +18,8 @@ export const registerUser = (newUserCredentials, history) => dispatch => {
             type: REGISTER_SUCCESS, 
             payload: pick(['id', 'username'], res.data) 
         })
-        history.push('/login')
+        setRegistrationSuccess(true)
+        setTimeout(() => history.push('/login'), 1000)
     })
     .catch(err => {
         dispatch({ type: REGISTER_FAILURE })
@@ -51,5 +52,15 @@ export const SIGN_OUT = "SIGN_OUT"
 export const signOut = () => dispatch => { 
     dispatch({ type: SIGN_OUT })
     localStorage.removeItem('gigapet-auth-token')
-    // window.history.go('/login')
+}
+
+
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT"
+
+export const deleteAccount = history => (dispatch, getState) => {
+    const { user: { id } } = getState()
+    dispatch({ type: DELETE_ACCOUNT })
+    axios.delete(`https://gigapets-be.herokuapp.com/api/auth/${id}`)
+    localStorage.removeItem('gigapet-auth-token')
+    history.push('/register')
 }

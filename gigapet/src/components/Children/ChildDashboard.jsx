@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card } from 'semantic-ui-react';
+
 import HappyDog from '../GigaPet/images/dog-happy.png'
+import Navigation from '../Layout/Navigation'
+import NewFoodEntryForm from '../Forms/NewFoodEntry'
 
 const ChildContent = styled.div`
     display: flex;
@@ -59,6 +62,8 @@ const Button = styled.button`
 export default function ChildDashboard () {
 
     return (
+        <>
+        <Navigation />
         <ChildContent>
             <LeftContent>
                 <h2>Recent Meals</h2>
@@ -90,10 +95,11 @@ export default function ChildDashboard () {
                 </MealList>
             </LeftContent>
             <RightContent>
-                <Button>Create New Meal</Button>
+                <NewFoodEntryForm />
                 <Image src={HappyDog} alt='dog'></Image>
             </RightContent>
         </ChildContent>
+        </>
     )
 }
 

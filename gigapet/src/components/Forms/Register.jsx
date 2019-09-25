@@ -9,6 +9,7 @@ import { registerUser } from '../../store/actions'
 
 export default function Login(props) {
     const dispatch = useDispatch()
+    const [registrationSuccess, setRegistrationSuccess] = useState(false)
 
     const initialStateCredentials = {
         username: '',
@@ -48,12 +49,13 @@ export default function Login(props) {
 
             // submit credenitals to the server
             // TODO: change post url to that of the deployed backend 
-            dispatch(registerUser(newUserCredentials, props.history))
+            dispatch(registerUser(newUserCredentials, setRegistrationSuccess, props.history))
         } 
     }
   
-    const [newUserCredentials, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
+    const [newUserCredentials,, handleChanges, handleSubmit] = useForm(initialStateCredentials, handleSubmitCb)
     const [errors, setError] = useState(initialStateErrors)
+
 
     return (
         <Container>
@@ -98,6 +100,13 @@ export default function Login(props) {
 
                 <Button type="submit">Register</Button>
             </Form>
+
+            { registrationSuccess && 
+              <Message positive>
+                  <Message.Header>Success</Message.Header>
+                  <p>You are now being redirected to the Login page...</p>
+              </Message>
+            }
         
             <P><strong>Already a user?</strong> <Link to="/login"><Underlined>Login</Underlined></Link></P>
         </Container>

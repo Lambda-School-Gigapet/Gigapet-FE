@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Button, Form } from 'semantic-ui-react'
 import styled from 'styled-components'
 
@@ -16,8 +16,6 @@ const Small = styled.div`
 
 export default function NewFoodEntry() {
     const initialStateNewMealEntry = {
-        // TODO: use earlier git commit with R.compose to split the categories into an array
-        // before dispatching it to the store
         mealType: '', 
         category: '',
         dish: '',
@@ -27,22 +25,42 @@ export default function NewFoodEntry() {
     const handleSubmitCb = newMealEntry => {
         // TODO: dispatch "newMealEntry" to the store
         console.log(newMealEntry)
+        setNewMealEntry(initialStateNewMealEntry)
+
     }
     
-    const [newMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
+    const [newMealEntry, setNewMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
+    const [modalOpen, setModalOpen] = useState(false)
+
+    const handleOpen = () => setModalOpen(true)
+    // The form won't submit without this setTimeout hack.
+    // Without the setTimeout, the following warning appears in the console: 
+    // Form submission canceled because the form is not connected
+    const handleClose = () => setTimeout(() => setModalOpen(false), 0)
     
     return (
-        <Modal trigger={<Small><Button color="green">Add a new food entry</Button></Small>}>
+        <Modal 
+            trigger={
+                <Small>
+                    <Button onClick={handleOpen} color="green">Add a new food entry</Button>
+                </Small>
+            }
+            open={modalOpen}
+            onClose={handleClose}
+            closeIcon
+        >
             {/* TODO: dynamically add child's name to modal header */}
             <Modal.Header>New meal for Johnny</Modal.Header>
             <Modal.Content>
                 <Centered>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Field>
                             <label>Meal Type (Breakfast/ Lunch/ Dinner)</label>
                             <input 
                                 name="mealType"
-                                type="text" 
+                                type="text"
+                                value={newMealEntry.mealType}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -50,6 +68,8 @@ export default function NewFoodEntry() {
                             <input 
                                 name="category"
                                 type="text" 
+                                value={newMealEntry.category}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -57,16 +77,20 @@ export default function NewFoodEntry() {
                             <input 
                                 name="dish"
                                 type="text" 
+                                value={newMealEntry.dish}
+                                onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
                             <label>Servings</label>
                             <input 
                                 name="servings"
-                                type="text" 
+                                type="text"
+                                value={newMealEntry.servings} 
+                                onChange={handleChanges}
                             />
                         </Form.Field>
-                        <Button color="green">+</Button>
+                        <Centered><Button onClick={handleClose} color="green" type="submit">+</Button></Centered>
                     </Form>
                 </Centered>
             </Modal.Content>

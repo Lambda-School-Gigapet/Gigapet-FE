@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, SIGN_OUT } from '../actions'
+import { LOGIN_SUCCESS, SIGN_OUT, DELETE_ACCOUNT } from '../actions'
 
 const initialState = {
     loggedIn: false,
@@ -20,6 +20,9 @@ export default function authReducer(state=initialState, action) {
                 loggedIn: false,
                 authToken: null
             }
+        
+        case DELETE_ACCOUNT:
+            return initialState
         
         default:
             return state

@@ -6,13 +6,11 @@ export default function NavBar() {
     return (
         <Menu>
             <Menu.Item className="menu-items">
-                <NavLink to="#">Home</NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink>
             </Menu.Item>
-            <Menu.Item className="menu-items">
-                <NavLink to="#">About</NavLink>
-            </Menu.Item>
-            <Menu.Item className="menu-items">
-                <NavLink to="#">Contact</NavLink>
+            
+            <Menu.Item>
+                <NavLink to="/settings">Settings</NavLink>
             </Menu.Item>
         </Menu>
     )
