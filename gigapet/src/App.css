@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie|Source+Sans+Pro&display=swap');
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 /* semantic ui react styling overwrites START */
 .nav-wrap {
   display: flex;
