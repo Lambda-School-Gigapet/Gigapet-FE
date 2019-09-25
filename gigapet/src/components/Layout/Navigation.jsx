@@ -22,6 +22,10 @@ const Logo = styled.h1`
   margin: 0;
   color: white;
   padding: 0 40px;
+
+  a {
+    color: white;
+  }
 `
 const Button = styled.button`
     width: 150px;
@@ -53,7 +57,7 @@ export default function Header(props) {
   
   return (
     <HeaderContent>
-      <Logo>Gigapet</Logo>
+      <Logo><Link to='/dashboard'>Gigapet</Link></Logo>
       <SearchExampleStandard />
       <span className="nav-wrap">
         <NavBar></NavBar>
