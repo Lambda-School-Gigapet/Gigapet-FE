@@ -12,6 +12,7 @@ const ChildContent = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     margin: 40px 80px;
+    height: 100%;
 `
 
 const RightContent = styled.span`
