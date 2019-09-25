@@ -21,7 +21,7 @@ export default function RecentMealsAllChildren(props) {
 
     //Set state of the current meals for tracking what to display
     //initializd with a empty array while data loads
-    const [ meals, setMeals ] = useState([])
+    const [ meals, setMeals ] = useState(null)
 
     //Axios request for data on meals
     //Dep array tracks if the data for the meals has changed
@@ -36,22 +36,28 @@ export default function RecentMealsAllChildren(props) {
         //     //Log error response to console for now until error handling is decided
         //     console.log('There was an error getting the meal data', err)
         // })
-        setTimeout(()=>{
-            setMeals(mockData)
-        }, 1000)
     }, [meals])
 
-    return (
-        meals.length === 0 ?
-        <MealContainer>
-            <h2>Recent Meals (all children): </h2>
-            <Card header="Loading..."/>
-        </MealContainer> :
-        <>
+    if (!meals) {
+        return (
+            <MealContainer>
+                <h2>Recent Meals (all children): </h2>
+                <Card header="Loading..."/>
+            </MealContainer>
+        )
+    } else if (meals.length === 0) {
+        return (
+            <MealContainer>
+                <h2>Recent Meals (all children): </h2>
+                <Card header="There are no meals for your children. Add New meals."/>
+            </MealContainer>
+        )
+    } else {
+        return (
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
                 {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} mealType={meal.mealType} servings={meal.servings}/>)}
             </MealContainer>
-        </>
-    )
+        )
+    }
 }

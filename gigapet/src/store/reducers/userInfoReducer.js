@@ -2,7 +2,7 @@ import {
     REGISTER_SUCCESS, 
     DELETE_ACCOUNT, 
     LOGIN_SUCCESS,
-    ADD_NEW_CHILD_SUCCESS
+    FETCH_CHILDREN_SUCCESS
 } from '../actions'
 
 const initialState = {
@@ -29,10 +29,10 @@ export default function userInfoReducer(state=initialState, action) {
         case DELETE_ACCOUNT:
             return initialState
 
-        case ADD_NEW_CHILD_SUCCESS:
+        case FETCH_CHILDREN_SUCCESS: 
             return {
                 ...state,
-                children: state.children.concat({id: action.payload})
+                children: action.payload
             }
         
         default: 

@@ -25,7 +25,12 @@ import {
     ADD_NEW_MEAL_ENTRY_START,
     ADD_NEW_MEAL_ENTRY_SUCCESS,
     ADD_NEW_MEAL_ENTRY_FAILURE,
-    addNewMealEntry
+    addNewMealEntry,
+
+    FETCH_CHILDREN_START,
+    FETCH_CHILDREN_SUCCESS,
+    FETCH_CHILDREN_FAILURE,
+    fetchChildren
 } from './childrenActions'
 
 export {
@@ -55,5 +60,10 @@ export {
     ADD_NEW_MEAL_ENTRY_START,
     ADD_NEW_MEAL_ENTRY_SUCCESS,
     ADD_NEW_MEAL_ENTRY_FAILURE,
-    addNewMealEntry
+    addNewMealEntry,
+
+    FETCH_CHILDREN_START,
+    FETCH_CHILDREN_SUCCESS,
+    FETCH_CHILDREN_FAILURE,
+    fetchChildren
 }

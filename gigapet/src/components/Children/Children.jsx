@@ -26,40 +26,14 @@ const CardContainer = styled.div`
 
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
-
-    //Set state of the current children for tracking what to display
-    //initializd with a empty array while data loads
-    const [ children, setChildren ] = useState(null)
-    
-    const { userId } = useSelector(state => ({ userId: state.user.id }));
-
-    //Axios request for data on children
-    //Dep array tracks if the data for the children has changed
-    const { fetchChildData } = props
-    useEffect(() => {
-        axiosWithAuth()
-        //TODO: need endpoint for getting children data
-        .get(`/${userId}/kids`)
-        .then(res => {
-            //Request data on the children and set the state of the list of children to the response data
-            setChildren(res.data)
-        }).catch(err => {
-            //Log error response to console for now until error handling is decided
-            console.error('There was an error getting the children data', err)
-        })
-        // setTimeout(()=>{
-        //     setChildren(mockData)
-        // }, 1000)
-    }, [userId, fetchChildData])
-
-    if (!children) {
+    if (!props.children) {
         return (
             <ChildrenContainer>
                 <h2>Your Children: </h2>
                 <Card header="Loading..."/>
             </ChildrenContainer>
         )
-    } else if (children.length === 0) {
+    } else if (props.children.length === 0) {
         return (
             <ChildrenContainer>
                 <h2>Your Children: </h2>
@@ -70,7 +44,7 @@ export default function Children(props) {
         return (
             <ChildrenContainer>
                 <h2>Your Children: </h2>
-                {children.map((child, idx) => <CardContainer key={idx}><Link to={`/child-dashboard/${child.id}`}><Child name={child.name} age={child.age} weight={child.weight} /></Link></CardContainer>)}
+                {props.children.map((child, idx) => <CardContainer key={idx}><Link to={`/child-dashboard/${child.id}`}><Child name={child.name} age={child.age} weight={child.weight} /></Link></CardContainer>)}
             </ChildrenContainer>
         )
     }

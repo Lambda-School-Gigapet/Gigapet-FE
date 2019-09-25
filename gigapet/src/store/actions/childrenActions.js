@@ -34,3 +34,21 @@ export const addNewMealEntry = (id, newMealEntry) => dispatch => {
         console.error(err)
     })
 }
+
+export const FETCH_CHILDREN_START = "FETCH_CHILDREN_START"
+export const FETCH_CHILDREN_SUCCESS = "FETCH_CHILDREN_SUCCESS"
+export const FETCH_CHILDREN_FAILURE = "FETCH_CHILDREN_FAILURE"
+
+export const fetchChildren = () => (dispatch, getState) => {
+    const { user: { id } } = getState()
+    dispatch({ type: FETCH_CHILDREN_START })
+    axiosWithAuth().get(`${id}/kids`)
+    .then(res => {
+        dispatch({ type: FETCH_CHILDREN_SUCCESS, payload: res.data })
+        console.log(res)
+    })
+    .catch(err => {
+        dispatch({ type: FETCH_CHILDREN_FAILURE })
+        console.error(err)
+    })
+}
