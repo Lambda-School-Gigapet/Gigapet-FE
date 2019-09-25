@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Card } from 'semantic-ui-react'
 
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -13,9 +14,8 @@ const ChildrenContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
-    border-radius: 5px;
     margin: 10px;
+    padding: 10px;
 `
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
@@ -43,6 +43,11 @@ export default function Children(props) {
     }, [children])
 
     return (
+        children.length === 0 ? 
+        <ChildrenContainer>
+            <h2>Your Children: </h2>
+            <Card header="Loading..."/>
+        </ChildrenContainer> :
         <>
             <ChildrenContainer>
                 <h2>Your Children: </h2>

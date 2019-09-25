@@ -10,10 +10,11 @@ import { loginUser } from '../../store/actions'
 
 export const Container = styled.div`
 	display: flex;
+	flex-grow: 2;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	margin-top: 4rem;
+	align-items: center;
+	padding-bottom: 45vh;
 `
 
 export const Underlined = styled.span`

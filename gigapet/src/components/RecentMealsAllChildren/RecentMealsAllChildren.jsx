@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Card } from 'semantic-ui-react'
 
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -12,9 +13,8 @@ const MealContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
-    border-radius: 5px;
     margin: 10px;
+    padding: 10px;
 `
 //Meal container is returned with all data for each recent meal of all children the user is tracking
 export default function RecentMealsAllChildren(props) {
@@ -42,10 +42,15 @@ export default function RecentMealsAllChildren(props) {
     }, [meals])
 
     return (
+        meals.length === 0 ?
+        <MealContainer>
+            <h2>Recent Meals (all children): </h2>
+            <Card header="Loading..."/>
+        </MealContainer> :
         <>
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
-                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} mealType={meal.mealType}/>)}
+                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} mealType={meal.mealType} servings={meal.servings}/>)}
             </MealContainer>
         </>
     )
