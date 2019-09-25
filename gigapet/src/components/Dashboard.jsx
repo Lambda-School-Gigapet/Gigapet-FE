@@ -8,7 +8,8 @@ import AddNewKidForm from './Forms/AddKid'
 const MainContent = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 20vh;
+  height: 100%;
+  padding: 50px;
 `
 
 export default function Dashboard() {

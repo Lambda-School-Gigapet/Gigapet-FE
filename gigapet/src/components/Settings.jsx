@@ -9,6 +9,7 @@ import { deleteAccount } from '../store/actions'
 const BreathingSpace = styled.div`
     margin-top: 3rem;
     margin-left: 1.5rem;
+    height: 100%;
 `
 
 export default function Settings(props) {
