@@ -19,7 +19,6 @@ export default function AddKid(props) {
     }
 
     const handleSubmitCb = newKid => {
-        console.log(newKid)
         setNewKid(initialStateNewKid)
         dispatch(addNewChild(newKid))
         props.triggerChildDataUpdate(prevState => !prevState)

@@ -43,10 +43,9 @@ export default function Children(props) {
         .then(res => {
             //Request data on the children and set the state of the list of children to the response data
             setChildren(res.data)
-            console.log(res.data)
         }).catch(err => {
             //Log error response to console for now until error handling is decided
-            console.log('There was an error getting the children data', err)
+            console.error('There was an error getting the children data', err)
         })
         // setTimeout(()=>{
         //     setChildren(mockData)
