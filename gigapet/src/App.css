@@ -3,6 +3,7 @@
 .App {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 /* semantic ui react styling overwrites START */
@@ -17,7 +18,6 @@
 div.ui.menu{
   margin: 16px;
   font-family: 'Source Sans Pro', sans-serif;
-  width: 300px;
   height: 40px;
 }
 
