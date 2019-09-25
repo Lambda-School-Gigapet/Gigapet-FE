@@ -21,24 +21,42 @@ export default function RecentMealsAllChildren(props) {
 
     //Set state of the current meals for tracking what to display
     //initializd with a empty array while data loads
-    const [ meals, setMeals ] = useState(null)
+    const [fetching, setFetching] = useState(false)
+    // const [childDataFetched, setChildDataFetched] = useState(0)
+    const [ meals, setMeals ] = useState([])
 
     //Axios request for data on meals
     //Dep array tracks if the data for the meals has changed
-    useEffect(() => {
-        // axiosWithAuth()
-        // //TODO: need endpoint for getting meal data
-        // .get('')
-        // .then(res => {
-        //     //Request data on the meals and set the state of the list of meals to the response data
-        //     setMeals(res.data)
-        // }).catch(err => {
-        //     //Log error response to console for now until error handling is decided
-        //     console.log('There was an error getting the meal data', err)
-        // })
-    }, [meals])
+    const { fetchChildData, children } = props
+    // useEffect(() => {
+    //     setFetching(true)
+    //     children.forEach(child => {
+    //         axiosWithAuth()
+    //         .get(`/${child.id}/entries`)
+    //         .then(res => {
+    //             setMeals((prevMeals) => [...prevMeals, ...res.data])
+    //             setChildDataFetched((prevChildDataFetched) => prevChildDataFetched + 1)
+    //             (children.length === childDataFetched) && setFetching(false)
+    //         })
+    //         .catch(err => {
+    //             setChildDataFetched((childDataFetched) => childDataFetched + 1)
+    //             console.error(err)
+    //         })
+    //     })
+    // }, [fetchChildData])
 
-    if (!meals) {
+    useEffect(() => {
+        children.forEach(child => {
+            axiosWithAuth()
+            .get(`/${child.id}/entries`)
+            .then(res => {
+                setMeals((prevMeals) => [...prevMeals, ...res.data])
+            })
+            .catch(console.error)
+        })
+    }, [fetchChildData, children])
+
+    if (fetching) {
         return (
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
@@ -56,7 +74,7 @@ export default function RecentMealsAllChildren(props) {
         return (
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
-                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} mealType={meal.mealType} servings={meal.servings}/>)}
+                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} meal={meal.meal} servings={meal.servings}/>)}
             </MealContainer>
         )
     }

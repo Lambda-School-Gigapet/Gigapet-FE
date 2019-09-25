@@ -20,8 +20,9 @@ export default function Dashboard() {
   const { children } = useSelector(state => ({
     children: state.user.children
   }))
-  const [shouldFetchChildrenData, setShouldFetchChildrenData] = useState(false)
+
   const dispatch = useDispatch()
+  const [shouldFetchChildrenData, setShouldFetchChildrenData] = useState(false)
 
   useEffect(() => {
     dispatch(fetchChildren())
@@ -33,7 +34,7 @@ export default function Dashboard() {
     <MainContent>
       <AddNewKidForm triggerChildDataUpdate={setShouldFetchChildrenData} />
       <Children fetchChildData={shouldFetchChildrenData} children={children} />
-      <RecentMealsAllChildren children={children} />
+      <RecentMealsAllChildren children={children} fetchChildData={shouldFetchChildrenData} />
     </MainContent>
     </>
   );
