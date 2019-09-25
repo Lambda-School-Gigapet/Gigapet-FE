@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Card } from 'semantic-ui-react'
 
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -41,6 +42,11 @@ export default function RecentMealsAllChildren(props) {
     }, [meals])
 
     return (
+        meals.length === 0 ?
+        <MealContainer>
+            <h2>Recent Meals (all children): </h2>
+            <Card header="Loading..."/>
+        </MealContainer> :
         <>
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
