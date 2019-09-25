@@ -1,4 +1,9 @@
-import { REGISTER_SUCCESS, DELETE_ACCOUNT, LOGIN_SUCCESS } from '../actions'
+import { 
+    REGISTER_SUCCESS, 
+    DELETE_ACCOUNT, 
+    LOGIN_SUCCESS,
+    ADD_NEW_CHILD_SUCCESS
+} from '../actions'
 
 const initialState = {
     id: null,
@@ -23,6 +28,12 @@ export default function userInfoReducer(state=initialState, action) {
         
         case DELETE_ACCOUNT:
             return initialState
+
+        case ADD_NEW_CHILD_SUCCESS:
+            return {
+                ...state,
+                children: state.children.concat({id: action.payload})
+            }
         
         default: 
             return state

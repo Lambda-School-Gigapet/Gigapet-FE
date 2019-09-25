@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Children from './Children/Children'
 import RecentMealsAllChildren from './RecentMealsAllChildren/RecentMealsAllChildren'
 import Navigation from './Layout/Navigation'
+import AddNewKidForm from './Forms/AddKid'
 
 const MainContent = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ export default function Dashboard() {
     <>
     <Navigation />
     <MainContent>
+      <AddNewKidForm />
       <Children />
       <RecentMealsAllChildren />
     </MainContent>

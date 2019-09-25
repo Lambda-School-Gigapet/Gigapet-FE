@@ -30,11 +30,12 @@ export default function Children(props) {
     //Set state of the current children for tracking what to display
     //initializd with a empty array while data loads
     const [ children, setChildren ] = useState(null)
-
+    
     const { userId } = useSelector(state => ({ userId: state.user.id }));
 
     //Axios request for data on children
     //Dep array tracks if the data for the children has changed
+    const { fetchChildData } = props
     useEffect(() => {
         axiosWithAuth()
         //TODO: need endpoint for getting children data
@@ -50,7 +51,7 @@ export default function Children(props) {
         // setTimeout(()=>{
         //     setChildren(mockData)
         // }, 1000)
-    }, [userId])
+    }, [userId, fetchChildData])
 
     if (!children) {
         return (

@@ -1,36 +1,31 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form } from 'semantic-ui-react'
-import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { Centered, Small } from './NewFoodEntry'
+import { addNewChild } from '../../store/actions'
 import useForm from '../../hooks/useForm'
 
-export const Centered = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-export const Small = styled.div`
-    width: 150px;
-`
-
-export default function NewFoodEntry() {
-    const initialStateNewMealEntry = {
-        mealType: '', 
-        category: '',
-        dish: '',
-        servings: ''
-    }
-    
-    const handleSubmitCb = newMealEntry => {
-        // TODO: dispatch "newMealEntry" to the store
-        console.log(newMealEntry)
-        setNewMealEntry(initialStateNewMealEntry)
-
-    }
-    
-    const [newMealEntry, setNewMealEntry, handleChanges, handleSubmit] = useForm(initialStateNewMealEntry, handleSubmitCb)
+export default function AddKid(props) {
+    const { id } = useSelector(state => ({ id: state.user.id }))
+    const dispatch = useDispatch()
     const [modalOpen, setModalOpen] = useState(false)
+
+    const initialStateNewKid = {
+        users_id: id,
+        name: '',
+        age: '',
+        weight: ''
+    }
+
+    const handleSubmitCb = newKid => {
+        console.log(newKid)
+        setNewKid(initialStateNewKid)
+        dispatch(addNewChild(newKid))
+        props.triggerChildDataUpdate(prevState => !prevState)
+    }
+    
+    const [newKid, setNewKid, handleChanges, handleSubmit] = useForm(initialStateNewKid, handleSubmitCb)
 
     const handleOpen = () => setModalOpen(true)
     // The form won't submit without this setTimeout hack.
@@ -42,7 +37,7 @@ export default function NewFoodEntry() {
         <Modal 
             trigger={
                 <Small>
-                    <Button onClick={handleOpen} color="green">Add a new food entry</Button>
+                    <Button onClick={handleOpen} color="green">Add child</Button>
                 </Small>
             }
             open={modalOpen}
@@ -55,41 +50,33 @@ export default function NewFoodEntry() {
                 <Centered>
                     <Form onSubmit={handleSubmit}>
                         <Form.Field>
-                            <label>Meal Type (Breakfast/ Lunch/ Dinner)</label>
+                            <label>Name</label>
                             <input 
-                                name="mealType"
+                                name="name"
                                 type="text"
-                                value={newMealEntry.mealType}
+                                value={newKid.name}
                                 onChange={handleChanges}
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Category</label> 
+                            <label>Age</label>
                             <input 
-                                name="category"
-                                type="text" 
-                                value={newMealEntry.category}
-                                onChange={handleChanges}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Dish</label>
-                            <input 
-                                name="dish"
-                                type="text" 
-                                value={newMealEntry.dish}
-                                onChange={handleChanges}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Servings</label>
-                            <input 
-                                name="servings"
+                                name="age"
                                 type="text"
-                                value={newMealEntry.servings} 
+                                value={newKid.age}
                                 onChange={handleChanges}
                             />
                         </Form.Field>
+                        <Form.Field>
+                            <label>Weight</label>
+                            <input 
+                                name="weight"
+                                type="text"
+                                value={newKid.weight}
+                                onChange={handleChanges}
+                            />
+                        </Form.Field>
+                        
                         <Centered><Button onClick={handleClose} color="green" type="submit">+</Button></Centered>
                     </Form>
                 </Centered>
