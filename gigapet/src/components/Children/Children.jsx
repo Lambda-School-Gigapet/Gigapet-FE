@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Card } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -17,6 +18,11 @@ const ChildrenContainer = styled.div`
     margin: 10px;
     padding: 10px;
 `
+const CardContainer = styled.div`
+    width: 100%;
+    margin: 1em 0;
+`
+
 //Children container is returned with all data for each child the user has access to
 export default function Children(props) {
 
@@ -24,10 +30,12 @@ export default function Children(props) {
     //initializd with a empty array while data loads
     const [ children, setChildren ] = useState([])
 
+    const userId = 1;
+
     //Axios request for data on children
     //Dep array tracks if the data for the children has changed
     useEffect(() => {
-        // axiosWithAuth()
+        // axiosWithAuth(`/api/${userId}/kids`)
         // //TODO: need endpoint for getting children data
         // .get('')
         // .then(res => {
@@ -51,7 +59,7 @@ export default function Children(props) {
         <>
             <ChildrenContainer>
                 <h2>Your Children: </h2>
-                {children.map((child, idx) => <Child key={idx} name={child.name} age={child.age} weight={child.weight}/>)}
+                {children.map((child, idx) => <CardContainer key={idx}><Link to={`/child-dashboard/${child.id}`}><Child name={child.name} age={child.age} weight={child.weight} /></Link></CardContainer>)}
             </ChildrenContainer>
         </>
     )

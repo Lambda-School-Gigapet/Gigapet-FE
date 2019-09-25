@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 
+
 //Child container is returned with data for the specific child from props
 export default function Child(props) {
     return (
