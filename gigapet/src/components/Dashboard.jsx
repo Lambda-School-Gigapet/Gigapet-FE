@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components'
 import Children from './Children/Children'
 import RecentMealsAllChildren from './RecentMealsAllChildren/RecentMealsAllChildren'
@@ -13,12 +13,14 @@ const MainContent = styled.div`
 `
 
 export default function Dashboard() {
+  const [shouldFetchChildrenData, setShouldFetchChildrenData] = useState(false)
+  
   return (
     <>
     <Navigation />
     <MainContent>
-      <AddNewKidForm />
-      <Children />
+      <AddNewKidForm triggerChildDataUpdate={setShouldFetchChildrenData} />
+      <Children fetchChildData={shouldFetchChildrenData} />
       <RecentMealsAllChildren />
     </MainContent>
     </>
