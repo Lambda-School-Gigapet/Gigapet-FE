@@ -30,7 +30,7 @@ export default function Children(props) {
     //Set state of the current children for tracking what to display
     //initializd with a empty array while data loads
     const [ children, setChildren ] = useState(null)
-
+    
     const { userId } = useSelector(state => ({ userId: state.user.id }));
 
     //Axios request for data on children
