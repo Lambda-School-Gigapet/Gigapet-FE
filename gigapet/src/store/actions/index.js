@@ -16,6 +16,13 @@ import {
     deleteAccount
 } from './authActions'
 
+import { 
+    ADD_NEW_CHILD_START,
+    ADD_NEW_CHILD_SUCCESS,
+    ADD_NEW_CHILD_FAILURE,
+    addNewChild
+} from './childrenActions'
+
 export {
     // Auth actions
     REGISTER_START,
@@ -32,5 +39,11 @@ export {
     signOut,
 
     DELETE_ACCOUNT,
-    deleteAccount
+    deleteAccount,
+
+    // Children Actions
+    ADD_NEW_CHILD_START,
+    ADD_NEW_CHILD_SUCCESS,
+    ADD_NEW_CHILD_FAILURE,
+    addNewChild
 }
