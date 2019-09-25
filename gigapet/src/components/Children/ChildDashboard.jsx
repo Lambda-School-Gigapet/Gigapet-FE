@@ -7,7 +7,7 @@ const ChildContent = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 40px 80px;
 `
 
