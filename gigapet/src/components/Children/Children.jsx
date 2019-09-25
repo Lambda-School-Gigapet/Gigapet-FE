@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Card } from 'semantic-ui-react'
 
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -42,6 +43,11 @@ export default function Children(props) {
     }, [children])
 
     return (
+        children.length === 0 ? 
+        <ChildrenContainer>
+            <h2>Your Children: </h2>
+            <Card header="Loading..."/>
+        </ChildrenContainer> :
         <>
             <ChildrenContainer>
                 <h2>Your Children: </h2>
