@@ -8,6 +8,8 @@ import RecentMealsAllChildren from './RecentMealsAllChildren/RecentMealsAllChild
 import Navigation from './Layout/Navigation'
 import AddNewKidForm from './Forms/AddKid'
 
+import axiosWithAuth from '../utils/axiosWithAuth'
+
 
 const MainContent = styled.div`
   display: flex;
@@ -27,10 +29,12 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(fetchChildren())
   }, [shouldFetchChildrenData])
+
+  const fetchMeal = (id) => axiosWithAuth().get(`/entry/${id}`)
   
   return (
     <>
-    <Navigation />
+    <Navigation children={children} fetchMeal={fetchMeal} />
     <MainContent>
       <AddNewKidForm triggerChildDataUpdate={setShouldFetchChildrenData} />
       <Children fetchChildData={shouldFetchChildrenData} children={children} />
