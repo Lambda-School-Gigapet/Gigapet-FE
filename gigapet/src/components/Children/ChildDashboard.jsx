@@ -119,7 +119,7 @@ export default function ChildDashboard (props) {
                                        color={generateRandomColor()}
                                     />
                         }) 
-                        : <Card header="You haven't entered any meals for Johhny yet" />
+                        : <Card header="You haven't entered any meals for your children yet" />
                     }
                 </MealList>
             </LeftContent>
