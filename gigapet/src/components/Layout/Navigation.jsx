@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "./Navbar";
-import SearchExampleStandard from './Searchbar'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -58,7 +57,6 @@ export default function Header(props) {
   return (
     <HeaderContent>
       <Logo><Link to='/dashboard'>Gigapet</Link></Logo>
-      <SearchExampleStandard />
       <span className="nav-wrap">
         <NavBar></NavBar>
         <Button onClick={handleSignOut}>
