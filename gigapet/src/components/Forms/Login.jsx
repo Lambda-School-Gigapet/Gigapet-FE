@@ -79,7 +79,7 @@ export default function Login(props) {
             }
 
 			<P>
-				<strong>Not a Giga owner?</strong> <Link to="/register"><Underlined>Register now.</Underlined></Link>
+				<strong>Not a Gigapet owner?</strong> <Link to="/register"><Underlined>Register now.</Underlined></Link>
 			</P>
 		</Container>
 	)
