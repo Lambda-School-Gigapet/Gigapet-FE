@@ -52,3 +52,20 @@ export const fetchChildren = () => (dispatch, getState) => {
         console.error(err)
     })
 }
+
+export const FEED_GIGAPET = "FEED_GIGAPET"
+
+export const feedGigapet = (points, servingSize) => ({
+    type: FEED_GIGAPET,
+    payload: {
+        points,
+        servingSize
+    }
+})
+
+export const UPDATE_GIGAPET_MOOD = "UPDATE_GIGAPET_MOOD"
+
+export const updateGigapetMood = (mood) => ({
+    type: UPDATE_GIGAPET_MOOD, 
+    payload: mood
+})

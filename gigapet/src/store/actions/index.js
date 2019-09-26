@@ -30,7 +30,13 @@ import {
     FETCH_CHILDREN_START,
     FETCH_CHILDREN_SUCCESS,
     FETCH_CHILDREN_FAILURE,
-    fetchChildren
+    fetchChildren,
+
+    FEED_GIGAPET,
+    feedGigapet,
+
+    UPDATE_GIGAPET_MOOD,
+    updateGigapetMood
 } from './childrenActions'
 
 export {
@@ -65,5 +71,11 @@ export {
     FETCH_CHILDREN_START,
     FETCH_CHILDREN_SUCCESS,
     FETCH_CHILDREN_FAILURE,
-    fetchChildren
+    fetchChildren,
+
+    FEED_GIGAPET,
+    feedGigapet,
+
+    UPDATE_GIGAPET_MOOD,
+    updateGigapetMood
 }
