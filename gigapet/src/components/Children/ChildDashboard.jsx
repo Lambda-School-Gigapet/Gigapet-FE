@@ -10,7 +10,8 @@ import Gigapet from '../GigaPet/GigaPet'
 
 // utils
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import randomNum from '../../utils/randomNum'
+// import randomNum from '../../utils/generateRandomColor'
+import generateRandomColor from '../../utils/generateRandomColor'
 
 const ChildContent = styled.div`
     display: flex;
@@ -80,9 +81,6 @@ export default function ChildDashboard (props) {
         .catch(console.error)
     }, [])
 
-    const cardColors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown']
-    const randomColor = (min=0, max=cardColors.length) => cardColors[randomNum(min, max)]
-    
     return (
         <>
         <Navigation />
@@ -92,6 +90,7 @@ export default function ChildDashboard (props) {
                 <MealList>
                     {(meals) 
                         ? meals.map(function renderMealCard(meal) {
+                            // TODO: replace header with childs actual name
                             return <Card
                                        header='Johnny Child'
                                        meta={`Date: ${meal.date}`}
@@ -99,35 +98,11 @@ export default function ChildDashboard (props) {
                                         `Meal: ${meal.meal} \n
                                         Food: ${meal.food}`
                                         }
-                                       color={randomColor()}
+                                       color={generateRandomColor()}
                                     />
                         }) 
                         : <Card header="You haven't entered any meals for Johhny yet" />
                     }
-                    {/* // <Card
-                    //     header='Johnny Child'
-                    //     meta='Date: 09/23/2019'
-                    //     description={[
-                    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //     ]}
-                    // />
-                    // <Card
-                    //     header='Johnny Child'
-                    //     meta='Date: 09/22/2019'
-                    //     description={[
-                    //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //         ]}
-                    // />
-                    // <Card
-                    //     header='Johnny Child'
-                    //     meta='Date: 09/21/2019'
-                    //     description={[
-                    //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                    //     ]}
-                    // /> */}
                 </MealList>
             </LeftContent>
             <RightContent>

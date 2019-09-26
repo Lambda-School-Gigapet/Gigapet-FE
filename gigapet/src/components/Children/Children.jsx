@@ -4,10 +4,10 @@ import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-//Helper util to request data with auth token of user
-import axiosWithAuth from '../../utils/axiosWithAuth';
 import Child from './Child'
 
+//Helper util to request data with auth token of user
+import axiosWithAuth from '../../utils/axiosWithAuth';
 import mockData from './mockdata'
 
 //Container div to show all children for user
@@ -44,7 +44,13 @@ export default function Children(props) {
         return (
             <ChildrenContainer>
                 <h2>Your Children: </h2>
-                {props.children.map((child, idx) => <CardContainer key={idx}><Link to={`/child-dashboard/${child.id}`}><Child name={child.name} age={child.age} weight={child.weight} /></Link></CardContainer>)}
+                {props.children.map((child, idx) => (
+                    <CardContainer key={idx}>
+                        <Link to={`/child-dashboard/${child.id}`}>
+                            <Child name={child.name} age={child.age} weight={child.weight} />
+                        </Link>
+                    </CardContainer>
+                ))}
             </ChildrenContainer>
         )
     }
