@@ -133,7 +133,7 @@ export default function NewFoodEntry(props) {
             closeIcon
         >
             {/* TODO: dynamically add child's name to modal header */}
-            <Modal.Header>New meal for Johnny</Modal.Header>
+            <Modal.Header>Add new meal</Modal.Header>
             <Modal.Content>
                 <Centered>
                     <Form onSubmit={handleSubmit}>

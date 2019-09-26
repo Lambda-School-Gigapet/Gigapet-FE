@@ -43,8 +43,7 @@ export default function AddKid(props) {
             onClose={handleClose}
             closeIcon
         >
-            {/* TODO: dynamically add child's name to modal header */}
-            <Modal.Header>New meal for Johnny</Modal.Header>
+            <Modal.Header>Enter your child's health details</Modal.Header>
             <Modal.Content>
                 <Centered>
                     <Form onSubmit={handleSubmit}>
