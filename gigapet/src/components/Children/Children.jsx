@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 import Child from './Child'
 
-//Helper util to request data with auth token of user
-import axiosWithAuth from '../../utils/axiosWithAuth';
-import mockData from './mockdata'
 
 //Container div to show all children for user
 const ChildrenContainer = styled.div`
