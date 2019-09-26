@@ -27,7 +27,6 @@ export const P = styled.p`
 
 
 export default function Login(props) {
-	// TODO: default the email value based on credentials stored on global context object 
 	const dispatch = useDispatch()
 	const [loginSuccess, setLoginSuccess] = useState(false)
 
@@ -80,7 +79,7 @@ export default function Login(props) {
             }
 
 			<P>
-				<strong>Not a user?</strong> <Link to="/register"><Underlined>Register now.</Underlined></Link>
+				<strong>Not a Giga owner?</strong> <Link to="/register"><Underlined>Register now.</Underlined></Link>
 			</P>
 		</Container>
 	)
