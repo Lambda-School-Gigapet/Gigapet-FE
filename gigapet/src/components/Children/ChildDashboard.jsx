@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Card } from 'semantic-ui-react';
+import { useSelector } from 'react-redux'
 
 //components
 import Navigation from '../Layout/Navigation'
@@ -9,6 +10,7 @@ import NewFoodEntryForm from '../Forms/NewFoodEntry'
 import Gigapet from '../GigaPet/GigaPet'
 
 // utils
+import * as R from 'ramda'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 // import randomNum from '../../utils/generateRandomColor'
 import generateRandomColor from '../../utils/generateRandomColor'
@@ -69,17 +71,40 @@ const Button = styled.button`
 
 export default function ChildDashboard (props) {
     const [meals, setMeals] = useState([])
+    // const { mood: currentMood, points } = useSelector(R.pick(['mood', 'points']))
+    const { mood: currentMood, points } = useSelector(state => ({ 
+        mood: state.gigapet.mood,
+        points: state.gigapet.points
+    }))
+    console.log('CURRENT_MOOD', currentMood)
+    console.log('points', points)
     
     const id = props.match.params.id
     useEffect(() => {
         axiosWithAuth()
-        .get(`${id}/entries`)
-        .then(res => {
-            console.log(res)
-            setMeals(res.data)
+            .get(`${id}/entries`)
+            .then(res => {
+                console.log('all entries', res)
+                setMeals(res.data)
+            })
+            .catch(console.error)
+    }, [points])
+
+    const shouldResetMood = 
+    meals.
+        filter(function lastSevenDays(meal) {
+            if (meal.date) {
+                let today = new Date()
+                today = today.getDay()
+
+                let [,day,] = meal.date.split('-')
+                day = parseInt(day)
+                return today - day <= 7 ? false : true
+            }
         })
-        .catch(console.error)
-    }, [])
+        .some(Boolean)
+
+    console.log('SHOULD RESET MOOD', shouldResetMood)
 
     return (
         <>
@@ -107,7 +132,10 @@ export default function ChildDashboard (props) {
             </LeftContent>
             <RightContent>
                 <NewFoodEntryForm childId={props.match.params.id}/>
-                <Gigapet mood="neutral" />
+                {shouldResetMood 
+                    ? <Gigapet mood="neutral" points={points} meals={meals}/> 
+                    : <Gigapet mood={currentMood} points={points} meals={meals} />
+                }
             </RightContent>
         </ChildContent>
         </>

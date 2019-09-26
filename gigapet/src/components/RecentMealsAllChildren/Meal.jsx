@@ -8,6 +8,6 @@ export default function Meal(props) {
     const des = `Category: ${props.category} Meal: ${props.meal} Servings: ${props.servings}`
 
     return (
-        <Card link header={props.date} meta={props.child} description={des}/>
+        <Card header={props.date} meta={props.child} description={des}/>
     )
 }

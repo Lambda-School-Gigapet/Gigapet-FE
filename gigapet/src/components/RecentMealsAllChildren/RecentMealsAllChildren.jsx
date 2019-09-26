@@ -30,29 +30,12 @@ export default function RecentMealsAllChildren(props) {
     //Axios request for data on meals
     //Dep array tracks if the data for the meals has changed
     const { fetchChildData, children } = props
-    // useEffect(() => {
-    //     setFetching(true)
-    //     children.forEach(child => {
-    //         axiosWithAuth()
-    //         .get(`/${child.id}/entries`)
-    //         .then(res => {
-    //             setMeals((prevMeals) => [...prevMeals, ...res.data])
-    //             setChildDataFetched((prevChildDataFetched) => prevChildDataFetched + 1)
-    //             (children.length === childDataFetched) && setFetching(false)
-    //         })
-    //         .catch(err => {
-    //             setChildDataFetched((childDataFetched) => childDataFetched + 1)
-    //             console.error(err)
-    //         })
-    //     })
-    // }, [fetchChildData])
-
     useEffect(() => {
         children.forEach(child => {
             axiosWithAuth()
             .get(`/${child.id}/entries`)
             .then(res => {
-                setMeals((prevMeals) => [...prevMeals, ...res.data])
+                setMeals((prevMeals) => [...res.data])
             })
             .catch(console.error)
         })
