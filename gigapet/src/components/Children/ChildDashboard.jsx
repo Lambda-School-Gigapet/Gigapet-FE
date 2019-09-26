@@ -33,6 +33,7 @@ const LeftContent = styled.span`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40%;
 `
 
 const MealList = styled.div`
@@ -40,8 +41,7 @@ const MealList = styled.div`
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
-    width: 500px;
-    height: 600px;
+    width: 100%
 `
 
 const Image = styled.img`
