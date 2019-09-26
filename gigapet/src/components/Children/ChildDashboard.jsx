@@ -1,10 +1,17 @@
-import React from 'react';
+// npm packages
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Card } from 'semantic-ui-react';
 
-import HappyDog from '../GigaPet/images/dog-happy.png'
+//components
 import Navigation from '../Layout/Navigation'
 import NewFoodEntryForm from '../Forms/NewFoodEntry'
+import Gigapet from '../GigaPet/GigaPet'
+
+// utils
+import axiosWithAuth from '../../utils/axiosWithAuth'
+// import randomNum from '../../utils/generateRandomColor'
+import generateRandomColor from '../../utils/generateRandomColor'
 
 const ChildContent = styled.div`
     display: flex;
@@ -61,6 +68,18 @@ const Button = styled.button`
 `
 
 export default function ChildDashboard (props) {
+    const [meals, setMeals] = useState([])
+    
+    const id = props.match.params.id
+    useEffect(() => {
+        axiosWithAuth()
+        .get(`${id}/entries`)
+        .then(res => {
+            console.log(res)
+            setMeals(res.data)
+        })
+        .catch(console.error)
+    }, [])
 
     return (
         <>
@@ -69,35 +88,26 @@ export default function ChildDashboard (props) {
             <LeftContent>
                 <h2>Recent Meals</h2>
                 <MealList>
-                    <Card
-                        header='Johnny Child'
-                        meta='Date: 09/23/2019'
-                        description={[
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                        ]}
-                    />
-                    <Card
-                        header='Johnny Child'
-                        meta='Date: 09/22/2019'
-                        description={[
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                            ]}
-                    />
-                    <Card
-                        header='Johnny Child'
-                        meta='Date: 09/21/2019'
-                        description={[
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
-                        ]}
-                    />
+                    {(meals) 
+                        ? meals.map(function renderMealCard(meal) {
+                            // TODO: replace header with childs actual name
+                            return <Card
+                                       header='Johnny Child'
+                                       meta={`Date: ${meal.date}`}
+                                       description={
+                                        `Meal: ${meal.meal} \n
+                                        Food: ${meal.food}`
+                                        }
+                                       color={generateRandomColor()}
+                                    />
+                        }) 
+                        : <Card header="You haven't entered any meals for Johhny yet" />
+                    }
                 </MealList>
             </LeftContent>
             <RightContent>
                 <NewFoodEntryForm childId={props.match.params.id}/>
-                <Image src={HappyDog} alt='dog'></Image>
+                <Gigapet mood="neutral" />
             </RightContent>
         </ChildContent>
         </>
