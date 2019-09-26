@@ -27,7 +27,6 @@ export const addNewMealEntry = (id, newMealEntry) => dispatch => {
     axiosWithAuth().post(`/${id}/new-entry`, newMealEntry)
     .then(res => {
         dispatch({ type: ADD_NEW_MEAL_ENTRY_SUCCESS })
-        console.log(res)
     })
     .catch(err => {
         dispatch({ type: ADD_NEW_MEAL_ENTRY_FAILURE })
@@ -45,7 +44,6 @@ export const fetchChildren = () => (dispatch, getState) => {
     axiosWithAuth().get(`${id}/kids`)
     .then(res => {
         dispatch({ type: FETCH_CHILDREN_SUCCESS, payload: res.data })
-        console.log(res)
     })
     .catch(err => {
         dispatch({ type: FETCH_CHILDREN_FAILURE })

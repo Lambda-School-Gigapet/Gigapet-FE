@@ -79,7 +79,6 @@ export default class moodGenerator {
         crunch(meals) {
             const allPoints = meals.map(meal => meal.category).map(this.determinePointValue)
             return allPoints.reduce((totalPoints, points) => {
-                console.log('calculation', totalPoints + points)
                 return totalPoints + points
             }, 0)
         }

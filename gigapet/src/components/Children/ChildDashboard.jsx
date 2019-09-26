@@ -12,7 +12,6 @@ import Gigapet from '../GigaPet/GigaPet'
 // utils
 import * as R from 'ramda'
 import axiosWithAuth from '../../utils/axiosWithAuth'
-// import randomNum from '../../utils/generateRandomColor'
 import generateRandomColor from '../../utils/generateRandomColor'
 
 const ChildContent = styled.div`
@@ -71,7 +70,6 @@ const Button = styled.button`
 
 export default function ChildDashboard (props) {
     const [meals, setMeals] = useState([])
-    // const { mood: currentMood, points } = useSelector(R.pick(['mood', 'points']))
     const { mood: currentMood, points } = useSelector(state => ({ 
         mood: state.gigapet.mood,
         points: state.gigapet.points
@@ -121,7 +119,7 @@ export default function ChildDashboard (props) {
                                        color={generateRandomColor()}
                                     />
                         }) 
-                        : <Card header="You haven't entered any meals for Johhny yet" />
+                        : <Card header="You haven't entered any meals for your children yet" />
                     }
                 </MealList>
             </LeftContent>
