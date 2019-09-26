@@ -15,6 +15,11 @@ const MainContent = styled.div`
   display: flex;
   justify-content: center;
   padding: 50px;
+
+  @media(max-width: 700px) {
+    flex-flow: column nowrap
+    align-items: center;
+  }
 `
 
 export default function Dashboard() {
