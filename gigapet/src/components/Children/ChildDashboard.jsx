@@ -117,12 +117,12 @@ export default function ChildDashboard (props) {
                         ? meals.map(function renderMealCard(meal) {
                             // TODO: replace header with childs actual name
                             return <Card
-                                       header='Johnny Child'
+                                       header={meal.food}
                                        meta={`Date: ${meal.date}`}
                                        description={
-                                        `Meal: ${meal.meal} \n
-                                        Food: ${meal.food}`
-                                        }
+                                        `Meal: ${meal.meal}
+                                        Category: ${meal.category}
+                                        `}
                                        color={generateRandomColor()}
                                     />
                         }) 

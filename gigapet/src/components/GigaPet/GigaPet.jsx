@@ -5,11 +5,12 @@ import HappyDog from './images/dog-happy.png'
 import NeutralDog from './images/dog-neutral.png'
 import SadDog from './images/dog-sad.png'
 import { useDispatch } from 'react-redux'
-import * as R from 'ramda'
 
 import { feedGigapet, updateGigapetMood } from '../../store/actions'
 
+import axiosWithAuth from '../../utils/axiosWithAuth'
 import MoodGenerator from '../../utils/MoodGenerator'
+import * as R from 'ramda'
 
 const Image = styled.img`
     padding-top: 20px;
@@ -26,10 +27,11 @@ export default function Gigapet(props) {
 
     const feed = (meals) => meals.forEach(meal => dispatch(feedGigapet(moodGen.points, meal.servingSize)))
     const { meals, points } = props
-    const generateNextMood = R.compose(moodGen.calculateMood, (points, meals) => moodGen.crunch(points, meals))
+    console.log('POINTS', points)
+    const generateNextMood = R.compose(moodGen.calculateMood, R.always(moodGen.crunch(meals)))
     useEffect(() => {
         feed(meals)
-        // R.compose(dispatch, updateGigapetMood, generateNextMood)(points, meals)
+        R.compose(dispatch, updateGigapetMood.bind(moodGen), generateNextMood.bind(moodGen))(meals)
     }, [meals, points])
 
 

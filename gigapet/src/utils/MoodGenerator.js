@@ -4,7 +4,7 @@ export default class moodGenerator {
         points = 0
         mood = 'neutral'
     
-        constructor(points=[], mood){
+        constructor(points=0, mood){
             this.points = points
             this.mood = mood 
         }
@@ -14,7 +14,7 @@ export default class moodGenerator {
             return this
         }
 
-        calculateMood(points=this.points) {
+        calculateMood(points) {
             var oneToTen = []
             for (let i = 1; i <= 10; i++) {
                 oneToTen.push(i)
@@ -36,9 +36,8 @@ export default class moodGenerator {
             }
 
 
-
             if (oneToTen.includes(points) || 
-                zeroToNegOneHundred
+                zeroToNegOneHundred.includes(points)
             ) {
                 this.mood = 'sad'
             }
@@ -52,7 +51,7 @@ export default class moodGenerator {
             } else {
                 this.mood = 'happy'
             }
-            
+
             return this.mood
         }
 
@@ -62,9 +61,9 @@ export default class moodGenerator {
                     return 10
                 case 'FRUIT':
                     return 7
-                case 'GRAINS/BEANS': 
+                case 'GRAINS/ BEANS': 
                     return 5
-                case 'MEAT/ POULTRY, SEAFOOD':
+                case 'MEAT/ POULTRY/ SEAFOOD':
                     return 5
                 case 'DAIRY':
                     return 3
@@ -77,11 +76,11 @@ export default class moodGenerator {
             }
         }
 
-        crunch(currentPoints=this.points, meals) {
+        crunch(meals) {
             const allPoints = meals.map(meal => meal.category).map(this.determinePointValue)
             return allPoints.reduce((totalPoints, points) => {
-                console.log('calcuclation', totalPoints + points)
+                console.log('calculation', totalPoints + points)
                 return totalPoints + points
-            }, currentPoints)
+            }, 0)
         }
     }
