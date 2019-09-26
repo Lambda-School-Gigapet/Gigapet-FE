@@ -76,15 +76,12 @@ export default function ChildDashboard (props) {
         mood: state.gigapet.mood,
         points: state.gigapet.points
     }))
-    console.log('CURRENT_MOOD', currentMood)
-    console.log('points', points)
     
     const id = props.match.params.id
     useEffect(() => {
         axiosWithAuth()
             .get(`${id}/entries`)
             .then(res => {
-                console.log('all entries', res)
                 setMeals(res.data)
             })
             .catch(console.error)
@@ -103,8 +100,6 @@ export default function ChildDashboard (props) {
             }
         })
         .some(Boolean)
-
-    console.log('SHOULD RESET MOOD', shouldResetMood)
 
     return (
         <>

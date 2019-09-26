@@ -7,7 +7,6 @@ import { Card } from 'semantic-ui-react'
 //Helper util to request data with auth token of user
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import Meal from './Meal'
-import mockData from './mockdata'
 
 //Container div to show recent meals of all children
 const MealContainer = styled.div`

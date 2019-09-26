@@ -23,11 +23,9 @@ export default function Gigapet(props) {
     const dispatch = useDispatch()
     const moodGen = new MoodGenerator(props.points, props.mood)
 
-    console.log('MOODGEN', moodGen)
 
     const feed = (meals) => meals.forEach(meal => dispatch(feedGigapet(moodGen.points, meal.servingSize)))
     const { meals, points } = props
-    console.log('POINTS', points)
     const generateNextMood = R.compose(moodGen.calculateMood, R.always(moodGen.crunch(meals)))
     useEffect(() => {
         feed(meals)
