@@ -14,7 +14,6 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 const MainContent = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
   padding: 50px;
 `
 
