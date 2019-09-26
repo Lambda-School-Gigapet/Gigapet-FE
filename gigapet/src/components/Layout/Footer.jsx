@@ -8,7 +8,8 @@ const FooterContent = styled.div`
   padding: 20px 0;
   background-color: #000000;
   bottom: 0;
-  width: 100%;
+  margin-top: 15rem;
+  // width: 100%;
 `
 const CopyRight = styled.h5`
   color: white;
