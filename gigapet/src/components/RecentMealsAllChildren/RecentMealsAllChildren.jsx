@@ -16,7 +16,6 @@ const MealContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px;
-    padding: 10px;
 `
 //Meal container is returned with all data for each recent meal of all children the user is tracking
 export default function RecentMealsAllChildren(props) {

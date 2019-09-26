@@ -1,14 +1,15 @@
 import React from "react";
 import styled from 'styled-components'
 
-const FooterContent = styled.div`
+const FooterContent = styled.footer`
   display: flex;
   flex-grow: 1;
   justify-content: center;
   padding: 20px 0;
   background-color: #000000;
   bottom: 0;
-  width: 100%;
+  // width: 100%;
+  margin-top: 40%;
 `
 const CopyRight = styled.h5`
   color: white;

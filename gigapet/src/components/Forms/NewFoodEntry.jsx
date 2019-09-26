@@ -15,6 +15,7 @@ export const Centered = styled.div`
 
 export const Small = styled.div`
     width: 150px;
+    margin: 3rem 0;
 `
 
 export default function NewFoodEntry(props) {
