@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card } from 'semantic-ui-react';
 
-import HappyDog from '../GigaPet/images/dog-happy.png'
 import Navigation from '../Layout/Navigation'
 import NewFoodEntryForm from '../Forms/NewFoodEntry'
+import Gigapet from '../GigaPet/GigaPet'
 
 const ChildContent = styled.div`
     display: flex;
@@ -97,7 +97,7 @@ export default function ChildDashboard (props) {
             </LeftContent>
             <RightContent>
                 <NewFoodEntryForm childId={props.match.params.id}/>
-                <Image src={HappyDog} alt='dog'></Image>
+                <Gigapet mood="neutral" />
             </RightContent>
         </ChildContent>
         </>
