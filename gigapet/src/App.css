@@ -3,7 +3,6 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 /* semantic ui react styling overwrites START */
@@ -44,7 +43,12 @@ div.ui.menu{
 }
 
 .ui.card {
-    margin: 3.5px;
-    width: 100%;
+  margin: 3.5px;
+  width: 100%;
+}
+
+.ui.content {
+  /* padding: .25rem .5rem; */
+  padding: 20px;
 }
 /* semantic ui react styling overwrites END */
