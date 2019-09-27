@@ -23,21 +23,21 @@ export default function RecentMealsAllChildren(props) {
     //initializd with a empty array while data loads
     const [fetching, setFetching] = useState(false)
     // const [childDataFetched, setChildDataFetched] = useState(0)
-    const [ meals, setMeals ] = useState([])
+    // const [ meals, setMeals ] = useState([])
 
     //Axios request for data on meals
     //Dep array tracks if the data for the meals has changed
     const { fetchChildData, children } = props
-    useEffect(() => {
-        children.forEach(child => {
-            axiosWithAuth()
-            .get(`/${child.id}/entries`)
-            .then(res => {
-                setMeals((prevMeals) => [...res.data])
-            })
-            .catch(console.error)
-        })
-    }, [fetchChildData, children])
+    // useEffect(() => {
+    //     children.forEach(child => {
+    //         axiosWithAuth()
+    //         .get(`/${child.id}/entries`)
+    //         .then(res => {
+    //             setMeals((prevMeals) => [...res.data])
+    //         })
+    //         .catch(console.error)
+    //     })
+    // }, [fetchChildData, children])
 
     if (fetching) {
         return (
@@ -46,7 +46,7 @@ export default function RecentMealsAllChildren(props) {
                 <Card header="Loading..."/>
             </MealContainer>
         )
-    } else if (meals.length === 0) {
+    } else if (props.meals.length === 0) {
         return (
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
@@ -57,7 +57,7 @@ export default function RecentMealsAllChildren(props) {
         return (
             <MealContainer>
                 <h2>Recent Meals (all children): </h2>
-                {meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} meal={meal.meal} servings={meal.servings}/>)}
+                {props.meals.map((meal, idx) => <Meal key={idx} date={meal.date} child={meal.child} category={meal.category} meal={meal.meal} servings={meal.servings}/>)}
             </MealContainer>
         )
     }

@@ -19,7 +19,7 @@ const ChildContent = styled.div`
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 40px 80px;
+    // margin: 40px 80px;
     height: 100%;
 `
 
