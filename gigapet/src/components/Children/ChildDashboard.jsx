@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import Navigation from '../Layout/Navigation'
 import NewFoodEntryForm from '../Forms/NewFoodEntry'
 import Gigapet from '../GigaPet/GigaPet'
+import EditFoodEntryForm from '../Forms/EditFoodEntry'
 
 // utils
 import * as R from 'ramda'
@@ -109,7 +110,8 @@ export default function ChildDashboard (props) {
                     {(meals) 
                         ? meals.map(function renderMealCard(meal) {
                             // TODO: replace header with childs actual name
-                            return <Card
+                            return (
+                                <Card
                                        header={meal.food}
                                        meta={`Date: ${meal.date}`}
                                        description={
@@ -117,7 +119,9 @@ export default function ChildDashboard (props) {
                                         Category: ${meal.category}
                                         `}
                                        color={generateRandomColor()}
+                                       extra={<EditFoodEntryForm childId={props.match.params.id} />}
                                     />
+                            )
                         }) 
                         : <Card header="You haven't entered any meals for your children yet" />
                     }

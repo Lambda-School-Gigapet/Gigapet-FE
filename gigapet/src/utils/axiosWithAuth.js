@@ -6,7 +6,7 @@ export default function axiosWithAuth() {
     return axios.create({
         baseURL: 'https://gigapets-be.herokuapp.com/api',
         headers: {
-            Authorization: token
+            Authorization: token,
         }
     })
 }
