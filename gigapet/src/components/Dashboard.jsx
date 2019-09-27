@@ -9,6 +9,7 @@ import Navigation from './Layout/Navigation'
 import AddNewKidForm from './Forms/AddKid'
 
 import axiosWithAuth from '../utils/axiosWithAuth'
+import * as R from 'ramda'
 
 
 const MainContent = styled.div`
@@ -31,10 +32,28 @@ export default function Dashboard() {
 
   const dispatch = useDispatch()
   const [shouldFetchChildrenData, setShouldFetchChildrenData] = useState(false)
+  const [ meals, setMeals ] = useState([])
+
 
   useEffect(() => {
     dispatch(fetchChildren())
   }, [shouldFetchChildrenData])
+
+  useEffect(() => {
+    console.log('children length', children.length)
+    children.forEach(child => {
+        axiosWithAuth()
+        .get(`/${child.id}/entries`)
+        .then(res => {
+            console.log('child entries', res)
+            setMeals((prevMeals) => [...prevMeals, ...res.data])
+        })
+        .catch(console.error)
+    })
+
+    return () => setMeals([])
+}, [shouldFetchChildrenData, children])
+
 
   const fetchMeal = (id) => axiosWithAuth().get(`/entry/${id}`)
   
@@ -44,7 +63,7 @@ export default function Dashboard() {
     <MainContent>
       <AddNewKidForm triggerChildDataUpdate={setShouldFetchChildrenData} />
       <Children fetchChildData={shouldFetchChildrenData} children={children} />
-      <RecentMealsAllChildren children={children} fetchChildData={shouldFetchChildrenData} />
+      <RecentMealsAllChildren children={children} fetchChildData={shouldFetchChildrenData} meals={meals} />
     </MainContent>
     </>
   );
