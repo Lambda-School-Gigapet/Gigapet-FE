@@ -34,6 +34,23 @@ export const addNewMealEntry = (id, newMealEntry) => dispatch => {
     })
 }
 
+export const EDIT_MEAL_ENTRY_START = "EDIT_MEAL_ENTRY_START"
+export const EDIT_MEAL_ENTRY_SUCCESS = "EDIT_MEAL_ENTRY_SUCCESS"
+export const EDIT_MEAL_ENTRY_FAILURE = "EDIT_MEAL_ENTRY_FAILURE"
+
+export const editMealEntry = (id, updatedMealEntry) => dispatch => {
+    dispatch({ type: EDIT_MEAL_ENTRY_START })
+    axiosWithAuth().put(`/entry/${id}`, updatedMealEntry)
+    .then(res => {
+        dispatch({ type: EDIT_MEAL_ENTRY_SUCCESS })
+        console.log(res)
+    })
+    .catch(err => {
+        dispatch({ type: EDIT_MEAL_ENTRY_FAILURE })
+        console.error(err)
+    })
+}
+
 export const FETCH_CHILDREN_START = "FETCH_CHILDREN_START"
 export const FETCH_CHILDREN_SUCCESS = "FETCH_CHILDREN_SUCCESS"
 export const FETCH_CHILDREN_FAILURE = "FETCH_CHILDREN_FAILURE"
